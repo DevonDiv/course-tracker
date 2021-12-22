@@ -1,6 +1,6 @@
 mat-card-title {
   text-align: center;
-  padding-top: 5%;;
+  padding-top: 5%;
 }
 
 mat-card {
@@ -13,6 +13,7 @@ mat-card {
 }
 
 form {
+  padding-top: 5%;
   position: absolute;
   top: 55%;
   left: 50%;

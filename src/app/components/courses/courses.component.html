@@ -13,17 +13,17 @@
     <div class="update-course"  *ngIf="hide === true">
       <mat-form-field>
         <mat-label>Course Name: </mat-label>
-        <input matInput type="text" name="courseName" ngModel required #courseName="ngModel">
+        <input matInput type="text" name="courseName" [(ngModel)]="course.courseName" required #courseName="ngModel">
         <mat-error></mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Professor: </mat-label>
-        <input matInput type="text" name="profName" ngModel required #profName="ngModel">
+        <input matInput type="text" name="profName" [(ngModel)]="course.profName" required #profName="ngModel">
         <mat-error></mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Professor Email: </mat-label>
-        <input matInput type="text" name="profEmail" ngModel #profEmail="ngModel">
+        <input matInput type="text" name="profEmail" [(ngModel)]="course.profEmail" #profEmail="ngModel">
         <mat-error></mat-error>
       </mat-form-field>
     </div>

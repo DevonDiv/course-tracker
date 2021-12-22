@@ -1,6 +1,6 @@
+<app-no-courses *ngIf="courses.length <= 0"></app-no-courses>
 <mat-tab-group>
-  <!-- TODO *ngFor through courses to add tabs with specific labels -->
-  <mat-tab label="iOS Development 2">
+  <mat-tab *ngFor="let course of courses" label="{{course.courseName}}">
     <app-tracker-table></app-tracker-table>
   </mat-tab>
 </mat-tab-group>
