@@ -1,22 +1,43 @@
-<!-- TODO *ngFor to loop through courses in mongoDB -->
-<mat-expansion-panel hideToggle>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      iOS Development 2
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-  <p>Course Name: iOS Development 2</p>
-  <p>Professor: Darren Takaki</p>
-  <p>Professor Contact: ctakaki@stclaircollege.ca</p>
-  <div class="buttons">
-    <button mat-raised-button (click)="updateCourse()" *ngIf="hide === true">
-      <mat-icon color="primary">check</mat-icon>
-    </button>
-    <button mat-raised-button (click)="editCourse()" *ngIf="hide === false">
-      <mat-icon color="primary">edit</mat-icon>
-    </button>
-    <button mat-raised-button (click)="deleteCourse()">
-      <mat-icon color="warn">delete</mat-icon>
-    </button>
-  </div>
-</mat-expansion-panel>
+<mat-accordion multi="false" *ngIf="courses.length > 0">
+  <mat-expansion-panel hideToggle *ngFor="let course of courses">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{course.courseName}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="course-info" *ngIf="hide === false">
+      <p>{{course.courseName}}</p>
+      <p>{{course.profName}}</p>
+      <p>{{course.profEmail}}</p>
+    </div>
+    <div class="update-course"  *ngIf="hide === true">
+      <mat-form-field>
+        <mat-label>Course Name: </mat-label>
+        <input matInput type="text" name="courseName" ngModel required #courseName="ngModel">
+        <mat-error></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Professor: </mat-label>
+        <input matInput type="text" name="profName" ngModel required #profName="ngModel">
+        <mat-error></mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Professor Contact: </mat-label>
+        <input matInput type="text" name="profEmail" ngModel #profEmail="ngModel">
+        <mat-error></mat-error>
+      </mat-form-field>
+    </div>
+    <div class="buttons">
+      <button mat-raised-button (click)="updateCourse()" *ngIf="hide === true">
+        <mat-icon color="primary">check</mat-icon>
+      </button>
+      <button mat-raised-button (click)="editCourse()" *ngIf="hide === false">
+        <mat-icon color="primary">edit</mat-icon>
+      </button>
+      <button mat-raised-button (click)="deleteCourse()">
+        <mat-icon color="warn">delete</mat-icon>
+      </button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+<h1 *ngIf="courses.length <= 0">No Courses Added Yet!</h1>

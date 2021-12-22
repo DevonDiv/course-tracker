@@ -6,3 +6,7 @@ mat-expansion-panel {
 .buttons {
   margin-left: 80%;
 }
+
+h1 {
+  text-align: center;
+}
