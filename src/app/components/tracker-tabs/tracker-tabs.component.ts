@@ -10,21 +10,21 @@ import { Course } from 'src/app/services/course.model';
 export class TrackerTabsComponent implements OnInit {
 
 courses: Course[] = [
-  // {
-  //   courseName: 'Angular',
-  //   profName: 'John Doe',
-  //   profEmail: 'doe@gmail.com'
-  // },
-  // {
-  //   courseName: 'Framework',
-  //   profName: 'John Doe',
-  //   profEmail: 'doe@gmail.com'
-  // },
-  // {
-  //   courseName: 'iOS',
-  //   profName: 'John Doe',
-  //   profEmail: 'doe@gmail.com'
-  // }
+  {
+    courseName: 'Angular',
+    profName: 'John Doe',
+    profEmail: 'doe@gmail.com'
+  },
+  {
+    courseName: 'Framework',
+    profName: 'John Doe',
+    profEmail: 'doe@gmail.com'
+  },
+  {
+    courseName: 'iOS',
+    profName: 'John Doe',
+    profEmail: 'doe@gmail.com'
+  }
 ]
 
   constructor() { }
