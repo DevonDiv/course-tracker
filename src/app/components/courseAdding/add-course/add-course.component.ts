@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { CourseService } from '../../services/course.service';
+import { CourseService } from '../../../services/course.service';
 
 @Component({
   selector: 'app-add-course',

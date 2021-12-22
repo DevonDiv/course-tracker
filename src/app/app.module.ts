@@ -19,16 +19,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
-import { TrackerComponent } from './components/tracker/tracker.component';
+import { TrackerComponent } from './components/courseTracker/tracker/tracker.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AddCourseComponent } from './components/add-course/add-course.component';
-import { ButtonComponent } from './components/button/button.component';
-import { HeaderCourseComponent } from './components/header-course/header-course.component';
-import { CourseComponent } from './components/course/course.component';
-import { NoCoursesComponent } from './components/no-courses/no-courses.component';
-import { CoursesComponent } from './components/courses/courses.component';
-import { TrackerTabsComponent } from './components/tracker-tabs/tracker-tabs.component';
-import { TrackerTableComponent } from './components/tracker-table/tracker-table.component';
+import { AddCourseComponent } from './components/courseAdding/add-course/add-course.component';
+import { ButtonComponent } from './components/courseAdding/button/button.component';
+import { HeaderCourseComponent } from './components/courseAdding/header-course/header-course.component';
+import { CourseComponent } from './components/courseAdding/course/course.component';
+import { NoCoursesComponent } from './components/courseTracker/no-courses/no-courses.component';
+import { CoursesComponent } from './components/courseAdding/courses/courses.component';
+import { TrackerTabsComponent } from './components/courseTracker/tracker-tabs/tracker-tabs.component';
+import { TrackerTableComponent } from './components/courseTracker/tracker-table/tracker-table.component';
 
 const appRoutes: Routes = [
   {path: '', component: TrackerComponent},
