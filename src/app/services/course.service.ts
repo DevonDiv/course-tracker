@@ -3,7 +3,7 @@ import { Subject } from "rxjs";
 
 import { Course } from "./course.model";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CourseService {
   private courses: Course[] = [];
   private coursesUpdate = new Subject<Course[]>();

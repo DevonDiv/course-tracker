@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { CourseService } from '../../services/course.service';
 
 @Component({
   selector: 'app-add-course',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCourseComponent implements OnInit {
 
-  constructor() { }
+  constructor(public courseService: CourseService) { }
 
   ngOnInit(): void {
+  }
+
+  onAddCourse(form: NgForm) {
+    // if (form.invalid) {
+    //   return;
+    // }
+    // this.courseService.addCourse(form.value.courseName, form.value.profName, form.value.profEmail);
+    // form.resetForm();
   }
 
 }
