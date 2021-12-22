@@ -9,10 +9,13 @@
   <p>Professor: Darren Takaki</p>
   <p>Professor Contact: ctakaki@stclaircollege.ca</p>
   <div class="buttons">
-    <button mat-raised-button>
+    <button mat-raised-button (click)="updateCourse()" *ngIf="hide === true">
+      <mat-icon color="primary">check</mat-icon>
+    </button>
+    <button mat-raised-button (click)="editCourse()" *ngIf="hide === false">
       <mat-icon color="primary">edit</mat-icon>
     </button>
-    <button mat-raised-button>
+    <button mat-raised-button (click)="deleteCourse()">
       <mat-icon color="warn">delete</mat-icon>
     </button>
   </div>

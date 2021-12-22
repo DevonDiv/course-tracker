@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesComponent implements OnInit {
 
+  hide: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  editCourse() {
+    this.hide = true;
+    console.log('edit course');
+  }
+
+  updateCourse() {
+    this.hide = false;
+    console.log('update course');
+  }
+
+  deleteCourse() {
+    console.log('delete course');
   }
 
 }
