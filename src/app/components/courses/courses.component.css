@@ -10,3 +10,10 @@ mat-expansion-panel {
 h1 {
   text-align: center;
 }
+
+.update-course {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 25%;
+}

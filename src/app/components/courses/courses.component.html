@@ -6,9 +6,9 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="course-info" *ngIf="hide === false">
-      <p>{{course.courseName}}</p>
-      <p>{{course.profName}}</p>
-      <p>{{course.profEmail}}</p>
+      <p>Course Name: {{course.courseName}}</p>
+      <p>Professor: {{course.profName}}</p>
+      <p *ngIf="course.profEmail !== ''">Professor Contact: {{course.profEmail}}</p>
     </div>
     <div class="update-course"  *ngIf="hide === true">
       <mat-form-field>
@@ -22,7 +22,7 @@
         <mat-error></mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Professor Contact: </mat-label>
+        <mat-label>Professor Email: </mat-label>
         <input matInput type="text" name="profEmail" ngModel #profEmail="ngModel">
         <mat-error></mat-error>
       </mat-form-field>
