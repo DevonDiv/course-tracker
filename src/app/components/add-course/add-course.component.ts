@@ -16,11 +16,11 @@ export class AddCourseComponent implements OnInit {
   }
 
   onAddCourse(form: NgForm) {
-    // if (form.invalid) {
-    //   return;
-    // }
-    // this.courseService.addCourse(form.value.courseName, form.value.profName, form.value.profEmail);
-    // form.resetForm();
+    if (form.invalid) {
+      return;
+    }
+    this.courseService.addCourse(form.value.courseName, form.value.profName, form.value.profEmail);
+    form.resetForm();
   }
 
 }

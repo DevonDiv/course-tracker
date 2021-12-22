@@ -1,18 +1,18 @@
-<form>
+<form (submit)="onAddCourse(postForm)" #postForm="ngForm" >
   <div class="courseInfo">
     <mat-form-field appearance="fill">
       <mat-label>Enter Course Name</mat-label>
-      <input matInput required>
+      <input matInput type="text" name="coursName" ngModel required #courseName="ngModel">
       <mat-error></mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Enter Course Professor</mat-label>
-      <input matInput required>
+      <input matInput type="text" name="profName" ngModel required #profName="ngModel">
       <mat-error></mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Enter Professor Email</mat-label>
-      <input matInput>
+      <input matInput type="text" name="profEmail" ngModel #profEmail="ngModel">
       <mat-error></mat-error>
     </mat-form-field>
     <app-button></app-button>
