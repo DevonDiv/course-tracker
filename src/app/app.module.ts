@@ -13,6 +13,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,6 +30,7 @@ import { NoCoursesComponent } from './components/courseTracker/no-courses/no-cou
 import { CoursesComponent } from './components/courseAdding/courses/courses.component';
 import { TrackerTabsComponent } from './components/courseTracker/tracker-tabs/tracker-tabs.component';
 import { TrackerTableComponent } from './components/courseTracker/tracker-table/tracker-table.component';
+import { AddWorkButtonComponent } from './components/courseTracker/add-work-button/add-work-button.component';
 
 const appRoutes: Routes = [
   {path: '', component: TrackerComponent},
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
     NoCoursesComponent,
     CoursesComponent,
     TrackerTabsComponent,
-    TrackerTableComponent
+    TrackerTableComponent,
+    AddWorkButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ const appRoutes: Routes = [
     MatExpansionModule,
     MatTabsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
