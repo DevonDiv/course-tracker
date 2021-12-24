@@ -51,4 +51,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
     this.openSnackBar('Course deleted', 'Undo');
   }
 
+  undoEdit() {
+    this.hide = false;
+  }
+
 }

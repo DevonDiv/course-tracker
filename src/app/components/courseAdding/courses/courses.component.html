@@ -34,8 +34,11 @@
       <button mat-raised-button (click)="editCourse()" *ngIf="hide === false">
         <mat-icon color="primary">edit</mat-icon>
       </button>
-      <button mat-raised-button (click)="deleteCourse()">
+      <button mat-raised-button (click)="deleteCourse()" *ngIf="hide === false">
         <mat-icon color="warn">delete</mat-icon>
+      </button>
+      <button mat-raised-button (click)="undoEdit()" *ngIf="hide === true">
+        <mat-icon color="primary">undo</mat-icon>
       </button>
     </div>
   </mat-expansion-panel>
