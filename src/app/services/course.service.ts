@@ -27,4 +27,10 @@ export class CourseService {
       this.coursesUpdate.next([...this.courses]);
   }
 
+  deleteCourse(course: Course) {
+    const index = this.courses.findIndex(c => c.courseName === course.courseName);
+    this.courses.splice(index, 1);
+    this.coursesUpdate.next([...this.courses]);
+  }
+
 }

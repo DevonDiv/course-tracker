@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Course } from '../../../services/course.model';
 import { CourseService } from '../../../services/course.service';
@@ -15,7 +16,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
   courses: Course[] = [];
   private courseSubscription: Subscription = new Subscription;
 
-  constructor(public courseService: CourseService) { }
+  constructor(public courseService: CourseService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.courses = this.courseService.getCourses();
@@ -28,6 +29,12 @@ export class CoursesComponent implements OnInit, OnDestroy {
     this.courseSubscription.unsubscribe();
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
+  }
+
   editCourse() {
     this.hide = true;
     console.log('edit course');
@@ -35,11 +42,13 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
   updateCourse() {
     this.hide = false;
+    this.openSnackBar('Course updated', 'Undo');
     console.log('update course');
   }
 
   deleteCourse() {
-    console.log('delete course');
+    this.courseService.deleteCourse(this.courses[0]);
+    this.openSnackBar('Course deleted', 'Undo');
   }
 
 }
