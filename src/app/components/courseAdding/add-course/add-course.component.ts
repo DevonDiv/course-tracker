@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CourseService } from '../../../services/course.service';
 
@@ -10,9 +11,15 @@ import { CourseService } from '../../../services/course.service';
 })
 export class AddCourseComponent implements OnInit {
 
-  constructor(public courseService: CourseService) { }
+  constructor(public courseService: CourseService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
   }
 
   onAddCourse(form: NgForm) {
@@ -20,6 +27,7 @@ export class AddCourseComponent implements OnInit {
       return;
     }
     this.courseService.addCourse(form.value.courseName, form.value.profName, form.value.profEmail);
+    this.openSnackBar('Course added', 'Undo');
     form.resetForm();
   }
 
