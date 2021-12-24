@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { Course } from 'src/app/services/course.model';
+import { Course } from '../../../services/course.model';
 
 @Component({
   selector: 'app-tracker-tabs',
