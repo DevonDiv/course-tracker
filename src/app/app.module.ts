@@ -15,6 +15,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +35,7 @@ import { TrackerTabsComponent } from './components/courseTracker/tracker-tabs/tr
 import { TrackerTableComponent } from './components/courseTracker/tracker-table/tracker-table.component';
 import { AddWorkButtonComponent } from './components/courseTracker/add-work-button/add-work-button.component';
 import { DeleteWorkButtonComponent } from './components/courseTracker/delete-work-button/delete-work-button.component';
+import { DialogFormComponent } from './components/courseTracker/dialog-form/dialog-form.component';
 
 const appRoutes: Routes = [
   {path: '', component: TrackerComponent},
@@ -58,7 +61,8 @@ const appRoutes: Routes = [
     TrackerTabsComponent,
     TrackerTableComponent,
     AddWorkButtonComponent,
-    DeleteWorkButtonComponent
+    DeleteWorkButtonComponent,
+    DialogFormComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +81,9 @@ const appRoutes: Routes = [
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

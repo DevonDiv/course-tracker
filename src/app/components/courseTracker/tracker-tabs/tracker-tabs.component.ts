@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Course } from '../../../services/course.model';
+import { DialogFormComponent } from '../dialog-form/dialog-form.component';
 
 @Component({
   selector: 'app-tracker-tabs',
@@ -34,7 +35,7 @@ courses: Course[] = [
   }
 
   onAddItem() {
-    const dialogRef = this.dialog.open(TrackerTabsDialogComponent);
+    const dialogRef = this.dialog.open(DialogFormComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -42,10 +43,3 @@ courses: Course[] = [
   }
 
 }
-
-@Component({
-  selector: 'app-tracker-tabs-dialog',
-  templateUrl: './tracker-tabs-dialog.html',
-  styleUrls: ['./tracker-tabs.component.css']
-})
-export class TrackerTabsDialogComponent {}
