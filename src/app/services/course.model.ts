@@ -1,5 +1,5 @@
 export interface Course {
-  courseName: string,
-  profName: string,
-  profEmail: string
+  courseName: string;
+  profName: string;
+  profEmail: string;
 }

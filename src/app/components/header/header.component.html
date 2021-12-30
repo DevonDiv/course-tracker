@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Course Tracker</span>
+    <span><a routerLink="/">Course Tracker</a></span>
     <span class="spacer"></span>
     <button mat-icon-button *ngIf="hasRoute('/') || hasRoute('/course')" [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
