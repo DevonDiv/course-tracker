@@ -27,7 +27,7 @@ export class AddCourseComponent implements OnInit {
       return;
     }
     this.courseService.addCourse(form.value.courseName, form.value.profName, form.value.profEmail);
-    this.openSnackBar('Course added', 'Undo');
+    this.openSnackBar('Course added', 'Dismiss');
     form.resetForm();
   }
 
