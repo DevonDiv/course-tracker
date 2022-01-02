@@ -12,6 +12,10 @@ export class CourseService {
     return [...this.courses]
   }
 
+  getCourseByName(courseName: string) {
+    return this.courses.find(c => c.courseName === courseName);
+  }
+
   getCourseUpdateListener() {
     return this.coursesUpdate.asObservable();
   }

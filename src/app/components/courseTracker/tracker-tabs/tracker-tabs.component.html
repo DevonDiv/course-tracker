@@ -6,6 +6,6 @@
 </mat-tab-group>
 <div class="buttons">
   <app-add-work-button *ngIf="courses.length >= 1" (click)="onAddItem()"></app-add-work-button>
-  <app-delete-work-button></app-delete-work-button>
+  <app-delete-work-button *ngIf="courses.length >= 1" (click)="onDeleteItem()"></app-delete-work-button>
 </div>
 

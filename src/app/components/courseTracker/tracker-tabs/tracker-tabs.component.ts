@@ -18,12 +18,12 @@ courses: Course[] = [
     profEmail: 'doe@gmail.com'
   },
   {
-    courseName: 'Framework',
+    courseName: 'Java',
     profName: 'John Doe',
     profEmail: 'doe@gmail.com'
   },
   {
-    courseName: 'iOS',
+    courseName: 'C#',
     profName: 'John Doe',
     profEmail: 'doe@gmail.com'
   }
@@ -40,6 +40,10 @@ courses: Course[] = [
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  onDeleteItem() {
+
   }
 
 }
