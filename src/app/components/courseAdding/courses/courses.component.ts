@@ -19,7 +19,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
   constructor(public courseService: CourseService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.courses = this.courseService.getCourses();
+    this.courseService.getCourses();
     this.courseSubscription = this.courseService.getCourseUpdateListener()
     .subscribe((courses: Course[]) => { this.courses = courses; }
     );

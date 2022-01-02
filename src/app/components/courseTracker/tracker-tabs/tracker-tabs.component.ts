@@ -11,23 +11,7 @@ import { DialogFormComponent } from '../dialog-form/dialog-form.component';
 })
 export class TrackerTabsComponent implements OnInit {
 
-courses: Course[] = [
-  {
-    courseName: 'Angular',
-    profName: 'John Doe',
-    profEmail: 'doe@gmail.com'
-  },
-  {
-    courseName: 'Java',
-    profName: 'John Doe',
-    profEmail: 'doe@gmail.com'
-  },
-  {
-    courseName: 'C#',
-    profName: 'John Doe',
-    profEmail: 'doe@gmail.com'
-  }
-]
+courses: Course[] = [];
 
   constructor(public dialog: MatDialog) { }
 
