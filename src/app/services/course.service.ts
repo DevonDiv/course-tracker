@@ -56,10 +56,13 @@ export class CourseService {
       });
   }
 
-  deleteCourse(course: Course) {
-    const index = this.courses.findIndex(c => c.courseName === course.courseName);
-    this.courses.splice(index, 1);
-    this.coursesUpdate.next([...this.courses]);
+  deleteCourse(courseId: string) {
+    this.http.delete('http://localhost:3000/api/courses/' + courseId)
+    .subscribe(() => {
+      const updatedCourses = this.courses.filter(course => course.id !== courseId);
+      this.courses = updatedCourses;
+      this.coursesUpdate.next([...this.courses]);
+    });
   }
 
 }

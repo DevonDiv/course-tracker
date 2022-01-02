@@ -46,8 +46,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
     console.log('update course');
   }
 
-  deleteCourse() {
-    this.courseService.deleteCourse(this.courses[0]);
+  deleteCourse(courseId: string) {
+    this.courseService.deleteCourse(courseId);
     this.openSnackBar('Course deleted', 'Dismiss');
   }
 

@@ -8,7 +8,7 @@
     <div class="course-info" *ngIf="hide === false">
       <p>Course Name: {{course.courseName}}</p>
       <p>Professor: {{course.profName}}</p>
-      <p *ngIf="course.profEmail !== ''">Professor Contact: {{course.profEmail}}</p>
+      <p>Professor Contact: {{course.profEmail}}</p>
     </div>
     <div class="update-course"  *ngIf="hide === true">
       <mat-form-field>
@@ -35,7 +35,7 @@
         <button mat-raised-button (click)="editCourse()" *ngIf="hide === false">
           <mat-icon color="primary">edit</mat-icon>
         </button>
-        <button mat-raised-button (click)="deleteCourse()" *ngIf="hide === false">
+        <button mat-raised-button (click)="deleteCourse(course.id)" *ngIf="hide === false">
           <mat-icon color="warn">delete</mat-icon>
         </button>
         <button mat-raised-button (click)="undoEdit()" *ngIf="hide === true">
