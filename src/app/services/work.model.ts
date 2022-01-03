@@ -1,6 +1,6 @@
 export interface Work {
   id: number;
-  class: string;
+  course: string;
   name: string;
   type: string;
   date: string;
