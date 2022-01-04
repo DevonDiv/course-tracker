@@ -15,15 +15,46 @@ export class WorkService {
   constructor(private http: HttpClient) {}
 
   getCourseWork() {
-
+    this.http.get<{ message: string, courseWork: any }>('http://localhost:3000/api/courseWork')
+    .pipe(map((courseWorkData) => {
+      return courseWorkData.courseWork.map(courseWork => {
+        return {
+          id: courseWork._id,
+          course: courseWork.course,
+          name: courseWork.name,
+          type: courseWork.type,
+          date: courseWork.date,
+          time: courseWork.time
+        };
+      });
+    }))
+    .subscribe((transformedCourseWork) => {
+      this.courseWork = transformedCourseWork;
+      this.workUpdate.next([...this.courseWork]);
+    });
   }
 
-  getCourseUpdateListener() {
-
+  getCourseWorkUpdateListener() {
+    return this.workUpdate.asObservable();
   }
 
-  addCourseWork() {
+  addCourseWork(course: string, name: string, type: string, date: string, time: string) {
+    const courseWork: Work = {
+      id: null,
+      course: course,
+      name: name,
+      type: type,
+      date: date,
+      time: time
+    };
 
+    this.http.post<{ message: string, courseWorkId: string }>('http://localhost:3000/api/courseWork', courseWork)
+    .subscribe((responseData) => {
+      const id = responseData.courseWorkId;
+      courseWork.id = id;
+      this.courseWork.push(courseWork);
+      this.workUpdate.next([...this.courseWork]);
+    });
   }
 
   deleteCourseWork() {

@@ -1,35 +1,36 @@
 <h1 mat-dialog-title>Add Course Work</h1>
 <div mat-dialog-content>
-<form class="course-work">
+<form class="course-work" (submit)="addCourseWork(postForm)" #postForm="ngForm">
   <mat-form-field appearance="fill">
     <mat-label>Select Course</mat-label>
-    <mat-select required>
-      <mat-option *ngFor="let course of courses" name="course" value="{{course.courseName}}">{{course.courseName}}</mat-option>
+    <mat-select required [(ngModel)]="selectedCourse" name="course">
+      <mat-option *ngFor="let course of courses" [value]="course.courseName">
+        {{course.courseName}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
-    <input matInput type="text" name="name" required>
+    <input matInput type="text" name="name" required ngModel #name="ngModel">
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Select</mat-label>
-      <mat-select required>
-        <mat-option name="assignment" value="assignment">Assignment</mat-option>
-        <mat-option name="quiz" value="1uiz">Quiz</mat-option>
-        <mat-option name="test" value="test">Test</mat-option>
+      <mat-select required [(ngModel)]="selectedType" name="type">
+        <mat-option value="assignment">Assignment</mat-option>
+        <mat-option value="quiz">Quiz</mat-option>
+        <mat-option value="test">Test</mat-option>
       </mat-select>
     </mat-form-field>
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Due Date</mat-label>
-        <input matInput [matDatepicker]="dp3" disabled>
+        <input matInput name="date" [matDatepicker]="dp3" disabled>
         <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
         <mat-datepicker #dp3 disabled="false"></mat-datepicker>
       </mat-form-field>
     </p>
   <mat-form-field appearance="fill">
     <mat-label>Time</mat-label>
-    <input matInput type="time" name="time" min="0:00" max="23:59" required>
+    <input matInput type="time" name="time" min="0:00" max="23:59" required ngModel #time="ngModel">
   </mat-form-field>
   <button mat-raised-button color="primary" type="submit">Submit</button>
 </form>

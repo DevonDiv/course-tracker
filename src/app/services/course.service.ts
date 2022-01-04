@@ -28,7 +28,7 @@ export class CourseService {
     .subscribe((transformedCourse) => {
       this.courses = transformedCourse;
       this.coursesUpdate.next([...this.courses]);
-    })
+    });
   }
 
   getCourseByName(courseName: string) {
