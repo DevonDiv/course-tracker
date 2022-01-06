@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { Course } from '../../../services/course.model';
-import { DialogFormComponent } from '../dialog-form/dialog-form.component';
 
 @Component({
   selector: 'app-tracker-tabs',
@@ -42,18 +41,6 @@ courses: Course[] = [];
       courseName.push(this.courses[i].courseName);
     }
     return courseName;
-  }
-
-  onAddItem() {
-    const dialogRef = this.dialog.open(DialogFormComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
-  onDeleteItem() {
-
   }
 
 }

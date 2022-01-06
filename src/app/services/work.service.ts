@@ -14,25 +14,25 @@ export class WorkService {
 
   constructor(private http: HttpClient) {}
 
-  getCourseWork() {
-    this.http.get<{ message: string, courseWork: any }>('http://localhost:3000/api/courseWork')
-    .pipe(map((courseWorkData) => {
-      return courseWorkData.courseWork.map(courseWork => {
-        return {
-          id: courseWork._id,
-          course: courseWork.course,
-          name: courseWork.name,
-          type: courseWork.type,
-          date: courseWork.date,
-          time: courseWork.time
-        };
-      });
-    }))
-    .subscribe((transformedCourseWork) => {
-      this.courseWork = transformedCourseWork;
-      this.workUpdate.next([...this.courseWork]);
-    });
-  }
+  // getCourseWork() {
+  //   this.http.get<{ message: string, courseWork: any }>('http://localhost:3000/api/courseWork')
+  //   .pipe(map((courseWorkData) => {
+  //     return courseWorkData.courseWork.map(courseWork => {
+  //       return {
+  //         id: courseWork._id,
+  //         course: courseWork.course,
+  //         name: courseWork.name,
+  //         type: courseWork.type,
+  //         date: courseWork.date,
+  //         time: courseWork.time
+  //       };
+  //     });
+  //   }))
+  //   .subscribe((transformedCourseWork) => {
+  //     this.courseWork = transformedCourseWork;
+  //     this.workUpdate.next([...this.courseWork]);
+  //   });
+  // }
 
   getCourseWorkUpdateListener() {
     return this.workUpdate.asObservable();
@@ -57,8 +57,13 @@ export class WorkService {
     });
   }
 
-  deleteCourseWork() {
-
+  deleteCourseWork(courseWorkId: string) {
+    this.http.delete('http://localhost:3000/api/courseWork/' + courseWorkId)
+    .subscribe(() => {
+      const updatedCourseWork = this.courseWork.filter(courseWork => courseWork.id !== courseWorkId);
+      this.courseWork = updatedCourseWork;
+      this.workUpdate.next([...this.courseWork]);
+    });
   }
 
 }

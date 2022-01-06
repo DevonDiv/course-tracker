@@ -4,3 +4,9 @@ table {
   margin-right: auto;
   width: 80%;
 }
+
+.buttons {
+  margin-top: 1%;
+  margin-right: 10%;
+  float: right;
+}
