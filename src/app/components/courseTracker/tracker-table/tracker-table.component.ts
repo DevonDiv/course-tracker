@@ -13,10 +13,10 @@ import { WorkService } from 'src/app/services/work.service';
 
   // Dummy Interface and Data
   const workData: Work[] = [
-    {id: 'one', course: 'angular', name: 'Work 1', type: 'Type 1', date: 'Date 1', time: 'Time 1'},
-    {id: 'two', course: 'java', name: 'Work 2', type: 'Type 2', date: 'Date 2', time: 'Time 2'},
-    {id: 'three', course: 'c#', name: 'Work 3', type: 'Type 3', date: 'Date 3', time: 'Time 3'},
-    {id: 'four', course: 'angular', name: 'Work 4', type: 'Type 4', date: 'Date 4', time: 'Time 4'}
+    {id: 'one', course: 'Frameworks', name: 'Work 1', type: 'Type 1', date: 'Date 1', time: 'Time 1'},
+    {id: 'two', course: 'PHP', name: 'Work 2', type: 'Type 2', date: 'Date 2', time: 'Time 2'},
+    {id: 'three', course: 'C#', name: 'Work 3', type: 'Type 3', date: 'Date 3', time: 'Time 3'},
+    {id: 'four', course: 'iOS 2', name: 'Work 4', type: 'Type 4', date: 'Date 4', time: 'Time 4'}
   ];
 
 @Component({
@@ -35,11 +35,35 @@ export class TrackerTableComponent implements OnInit {
   constructor(public workService: WorkService, private http: HttpClient, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.courses = this.getCourseNames();
     this.getCourseWork();
     this.courseWorkSubscription = this.workService.getCourseWorkUpdateListener()
     .subscribe((courseWork: Work[]) => {
       this.courseWork = courseWork;
     });
+  }
+
+  getCourseNames() {
+    let courseName = [];
+    this.http.get<{ message: string, courses: any }>('http://localhost:3000/api/courses')
+    .pipe(map((courseData) => {
+      return courseData.courses.map(course => {
+        return {
+          id: course._id,
+          courseName: course.courseName,
+          profName: course.profName,
+          profEmail: course.profEmail
+        };
+      });
+    }))
+    .subscribe((transformedCourse) => {
+      this.courses = transformedCourse;
+    });
+
+    for (let i = 0; i < this.courses.length; i++) {
+      courseName.push(this.courses[i].courseName);
+    }
+    return courseName;
   }
 
   isAllSelected() {
@@ -107,7 +131,7 @@ export class TrackerTableComponent implements OnInit {
 
   displayedColumns: string[] = ['select', 'name', 'type', 'date', 'time'];
   // data source will be fetched from the server
-  // dataSource = workData;
-  dataSource = this.courseWork;
+  dataSource = workData;
+  // dataSource = this.courseWork;
 
 }

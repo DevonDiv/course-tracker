@@ -48,6 +48,7 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <div class="buttons">
-  <app-add-work-button *ngIf="courses.length >= 1" (click)="addCourseWork()"></app-add-work-button>
+  <app-add-work-button *ngIf="courses.length >= 1"  (click)="addCourseWork()"></app-add-work-button>
   <app-delete-work-button *ngIf="courses.length >= 1" (click)="deleteCourseWork()"></app-delete-work-button>
 </div>
+<!--  -->
