@@ -11,15 +11,8 @@ import { DialogFormComponent } from '../dialog-form/dialog-form.component';
 import { Course } from '../../../services/course.model';
 import { Work } from '../../../services/work.model';
 import { WorkService } from 'src/app/services/work.service';
+import { selectedTab } from '../tracker-tabs/tracker-tabs.component';
 
-
-  // Dummy Interface and Data
-  const workData: Work[] = [
-    {id: 'one', course: 'Frameworks', name: 'Work 1', type: 'Type 1', date: 'Date 1', time: 'Time 1'},
-    {id: 'two', course: 'PHP', name: 'Work 2', type: 'Type 2', date: 'Date 2', time: 'Time 2'},
-    {id: 'three', course: 'C#', name: 'Work 3', type: 'Type 3', date: 'Date 3', time: 'Time 3'},
-    {id: 'four', course: 'iOS 2', name: 'Work 4', type: 'Type 4', date: 'Date 4', time: 'Time 4'}
-  ];
 
 @Component({
   selector: 'app-tracker-table',
@@ -30,7 +23,7 @@ export class TrackerTableComponent implements OnInit {
 
   courses: Course[] = [];
   courseWork: Work[] = [];
-  sCourseWork: string[] = [];
+  selectedCourseWork: string[] = [];
   private courseWorkSubscription: Subscription = new Subscription;
   selection = new SelectionModel<Work>(true, []);
 
@@ -58,7 +51,7 @@ export class TrackerTableComponent implements OnInit {
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.length;
+    const numRows = this.courseWork.length;
     return numSelected === numRows;
   }
 
@@ -68,7 +61,7 @@ export class TrackerTableComponent implements OnInit {
       return;
     }
 
-    this.selection.select(...this.dataSource);
+    this.selection.select(...this.courseWork);
   }
 
   checkboxLabel(row?: Work): string {
@@ -77,10 +70,10 @@ export class TrackerTableComponent implements OnInit {
     }
 
     if (this.selection.isSelected(row)) {
-      this.sCourseWork.push(row.id);
+      this.selectedCourseWork.push(row.id);
 
-      this.sCourseWork = this.sCourseWork.filter((item, pos) => {
-        return this.sCourseWork.indexOf(item) === pos;
+      this.selectedCourseWork = this.selectedCourseWork.filter((item, pos) => {
+        return this.selectedCourseWork.indexOf(item) === pos;
       });
     }
 
@@ -145,16 +138,13 @@ export class TrackerTableComponent implements OnInit {
     this.openSnackBar('Course Work Added', 'Dismiss');
   }
 
-  deleteCourseWork(/*courseWorkId: string, row: Work*/) {
-    console.log(this.sCourseWork);
-    this.sCourseWork = [];
-    console.log(this.sCourseWork);
+  deleteCourseWork() {
+    console.log(this.selectedCourseWork);
+    this.selectedCourseWork = [];
+    console.log(this.selectedCourseWork);
     this.openSnackBar('Course Work Deleted', 'Dismiss');
   }
 
   displayedColumns: string[] = ['select', 'name', 'type', 'date', 'time'];
-  // data source will be fetched from the server
-  dataSource = workData;
-  // dataSource = this.courseWork;
 
 }

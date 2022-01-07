@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { Course } from '../../../services/course.model';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+
+export let selectedTab: string = '';
 
 @Component({
   selector: 'app-tracker-tabs',
@@ -41,6 +44,11 @@ courses: Course[] = [];
       courseName.push(this.courses[i].courseName);
     }
     return courseName;
+  }
+
+  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+    selectedTab = tabChangeEvent.tab.textLabel;
+    return console.log(selectedTab);
   }
 
 }
