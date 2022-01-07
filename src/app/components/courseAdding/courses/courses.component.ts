@@ -12,7 +12,6 @@ import { CourseService } from '../../../services/course.service';
 })
 export class CoursesComponent implements OnInit, OnDestroy {
 
-  hide: boolean = false;
   courses: Course[] = [];
   private courseSubscription: Subscription = new Subscription;
 
@@ -35,24 +34,9 @@ export class CoursesComponent implements OnInit, OnDestroy {
     });
   }
 
-  editCourse() {
-    this.hide = true;
-    console.log('edit course');
-  }
-
-  updateCourse() {
-    this.hide = false;
-    this.openSnackBar('Course updated', 'Dismiss');
-    console.log('update course');
-  }
-
   deleteCourse(courseId: string) {
     this.courseService.deleteCourse(courseId);
     this.openSnackBar('Course deleted', 'Dismiss');
-  }
-
-  undoEdit() {
-    this.hide = false;
   }
 
 }

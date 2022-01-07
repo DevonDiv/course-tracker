@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
 
 @Component({
   selector: 'app-header-course',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderCourseComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: ActivatedRoute) { }
+
+  activeRoute: string;
 
   ngOnInit(): void {
+    this.getActiveRoute();
+  }
+
+  getActiveRoute() {
+    // get the active route and store it in activeRoute variable as a string
+    this.router.url.subscribe((url: UrlSegment[]) => {
+      this.activeRoute = url[0].path;
+    });
   }
 
 }

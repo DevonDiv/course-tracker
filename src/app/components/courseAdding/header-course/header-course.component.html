@@ -2,6 +2,8 @@
   <mat-card-title>
     <h2>Add Courses</h2>
   </mat-card-title>
-  <app-add-course></app-add-course>
+    <app-add-course></app-add-course>
 </mat-card>
+<ng-container *ngIf="activeRoute === 'course'">
 <app-courses></app-courses>
+</ng-container>

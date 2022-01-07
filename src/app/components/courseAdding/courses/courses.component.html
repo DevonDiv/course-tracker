@@ -5,41 +5,18 @@
         {{course.courseName}}
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <div class="course-info" *ngIf="hide === false">
+    <div class="course-info">
       <p>Course Name: {{course.courseName}}</p>
       <p>Professor: {{course.profName}}</p>
       <p>Professor Contact: {{course.profEmail}}</p>
     </div>
-    <div class="update-course"  *ngIf="hide === true">
-      <mat-form-field>
-        <mat-label>Course Name: </mat-label>
-        <input matInput type="text" name="courseName" [(ngModel)]="course.courseName" required #courseName="ngModel">
-        <mat-error></mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Professor: </mat-label>
-        <input matInput type="text" name="profName" [(ngModel)]="course.profName" required #profName="ngModel">
-        <mat-error></mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Professor Email: </mat-label>
-        <input matInput type="text" name="profEmail" [(ngModel)]="course.profEmail" #profEmail="ngModel">
-        <mat-error></mat-error>
-      </mat-form-field>
-    </div>
     <mat-action-row>
       <div class="buttons">
-        <button mat-raised-button (click)="updateCourse()" *ngIf="hide === true">
-          <mat-icon color="primary">check</mat-icon>
-        </button>
-        <button mat-raised-button (click)="editCourse()" *ngIf="hide === false">
+        <button mat-raised-button [routerLink]="['/edit', course.id]">
           <mat-icon color="primary">edit</mat-icon>
         </button>
-        <button mat-raised-button (click)="deleteCourse(course.id)" *ngIf="hide === false">
+        <button mat-raised-button (click)="deleteCourse(course.id)">
           <mat-icon color="warn">delete</mat-icon>
-        </button>
-        <button mat-raised-button (click)="undoEdit()" *ngIf="hide === true">
-          <mat-icon color="primary">undo</mat-icon>
         </button>
       </div>
     </mat-action-row>

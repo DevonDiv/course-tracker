@@ -44,6 +44,7 @@ import { DialogFormComponent } from './components/courseTracker/dialog-form/dial
 const appRoutes: Routes = [
   {path: '', component: TrackerComponent},
   {path: 'course', component: CourseComponent},
+  {path: 'edit/:courseId', component: CourseComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent}
 ]

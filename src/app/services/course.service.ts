@@ -31,6 +31,10 @@ export class CourseService {
     });
   }
 
+  getCourse(id: string) {
+    return {...this.courses.find(p => p.id === id)};
+  }
+
   getCourseByName(courseName: string) {
     return this.courses.find(c => c.courseName === courseName);
   }
@@ -54,6 +58,24 @@ export class CourseService {
         this.courses.push(course);
         this.coursesUpdate.next([...this.courses]);
       });
+  }
+
+  updateCourse(id: string, courseName: string, profName: string, profEmail: string) {
+    const course: Course = {
+      id: id,
+      courseName: courseName,
+      profName: profName,
+      profEmail: profEmail
+    };
+
+    this.http.patch('http://localhost:3000/api/courses/' + id, course)
+    .subscribe(response => {
+      const updatedCourses = [...this.courses];
+      const oldCourseIndex = updatedCourses.findIndex(c => c.id === course.id);
+      updatedCourses[oldCourseIndex] = course;
+      this.courses = updatedCourses;
+      this.coursesUpdate.next([...this.courses]);
+    });
   }
 
   deleteCourse(courseId: string) {
