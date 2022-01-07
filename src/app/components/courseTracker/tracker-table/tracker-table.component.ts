@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -32,7 +34,8 @@ export class TrackerTableComponent implements OnInit {
   private courseWorkSubscription: Subscription = new Subscription;
   selection = new SelectionModel<Work>(true, []);
 
-  constructor(public workService: WorkService, private http: HttpClient, private dialog: MatDialog) { }
+  constructor(public workService: WorkService, private http: HttpClient,
+     private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.courses = this.getCourseNames();
@@ -40,6 +43,12 @@ export class TrackerTableComponent implements OnInit {
     this.courseWorkSubscription = this.workService.getCourseWorkUpdateListener()
     .subscribe((courseWork: Work[]) => {
       this.courseWork = courseWork;
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
     });
   }
 
@@ -88,8 +97,10 @@ export class TrackerTableComponent implements OnInit {
 
     if (this.selection.isSelected(row)) {
       this.sCourseWork.push(row.id);
-    } else if (!this.selection.isSelected(row)) {
-      this.sCourseWork.splice(this.sCourseWork.indexOf(row.id), 1);
+
+      this.sCourseWork = this.sCourseWork.filter((item, pos) => {
+        return this.sCourseWork.indexOf(item) === pos;
+      });
     }
 
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
@@ -123,10 +134,14 @@ export class TrackerTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+    this.openSnackBar('Course Work Added', 'Dismiss');
   }
 
   deleteCourseWork(/*courseWorkId: string, row: Work*/) {
     console.log(this.sCourseWork);
+    this.sCourseWork = [];
+    console.log(this.sCourseWork);
+    this.openSnackBar('Course Work Deleted', 'Dismiss');
   }
 
   displayedColumns: string[] = ['select', 'name', 'type', 'date', 'time'];
