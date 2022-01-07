@@ -46,34 +46,15 @@ export class TrackerTableComponent implements OnInit {
     });
   }
 
+  //Snack Bar
+
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 5000,
     });
   }
 
-  getCourseNames() {
-    let courseName = [];
-    this.http.get<{ message: string, courses: any }>('http://localhost:3000/api/courses')
-    .pipe(map((courseData) => {
-      return courseData.courses.map(course => {
-        return {
-          id: course._id,
-          courseName: course.courseName,
-          profName: course.profName,
-          profEmail: course.profEmail
-        };
-      });
-    }))
-    .subscribe((transformedCourse) => {
-      this.courses = transformedCourse;
-    });
-
-    for (let i = 0; i < this.courses.length; i++) {
-      courseName.push(this.courses[i].courseName);
-    }
-    return courseName;
-  }
+  //Checkbox
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -105,6 +86,33 @@ export class TrackerTableComponent implements OnInit {
 
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
   }
+
+  //Courses
+
+  getCourseNames() {
+    let courseName = [];
+    this.http.get<{ message: string, courses: any }>('http://localhost:3000/api/courses')
+    .pipe(map((courseData) => {
+      return courseData.courses.map(course => {
+        return {
+          id: course._id,
+          courseName: course.courseName,
+          profName: course.profName,
+          profEmail: course.profEmail
+        };
+      });
+    }))
+    .subscribe((transformedCourse) => {
+      this.courses = transformedCourse;
+    });
+
+    for (let i = 0; i < this.courses.length; i++) {
+      courseName.push(this.courses[i].courseName);
+    }
+    return courseName;
+  }
+
+  //Course Work
 
   getCourseWork() {
     let work = [];
