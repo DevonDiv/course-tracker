@@ -50,12 +50,13 @@ export class AddCourseComponent implements OnInit {
     if (this.mode === 'create') {
       this.courseService.addCourse(form.value.courseName, form.value.profName, form.value.profEmail);
       this.openSnackBar('Course added', 'Dismiss');
+      form.resetForm();
     }
     if (this.mode === 'edit') {
       this.courseService.updateCourse(this.courseId, form.value.courseName, form.value.profName, form.value.profEmail);
+      this.openSnackBar('Course updated', 'Dismiss');
     }
 
-    form.resetForm();
   }
 
 }

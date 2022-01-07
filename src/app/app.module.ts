@@ -40,6 +40,7 @@ import { TrackerTableComponent } from './components/courseTracker/tracker-table/
 import { AddWorkButtonComponent } from './components/courseTracker/add-work-button/add-work-button.component';
 import { DeleteWorkButtonComponent } from './components/courseTracker/delete-work-button/delete-work-button.component';
 import { DialogFormComponent } from './components/courseTracker/dialog-form/dialog-form.component';
+import { BackButtonComponent } from './components/courseAdding/back-button/back-button.component';
 
 const appRoutes: Routes = [
   {path: '', component: TrackerComponent},
@@ -67,7 +68,8 @@ const appRoutes: Routes = [
     TrackerTableComponent,
     AddWorkButtonComponent,
     DeleteWorkButtonComponent,
-    DialogFormComponent
+    DialogFormComponent,
+    BackButtonComponent
   ],
   imports: [
     BrowserModule,

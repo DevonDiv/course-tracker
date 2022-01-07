@@ -7,3 +7,6 @@
 <ng-container *ngIf="activeRoute === 'course'">
 <app-courses></app-courses>
 </ng-container>
+<ng-container *ngIf="activeRoute !== 'course'">
+  <app-back-button routerLink="/course"></app-back-button>
+</ng-container>
