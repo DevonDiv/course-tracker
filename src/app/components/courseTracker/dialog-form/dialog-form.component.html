@@ -23,7 +23,7 @@
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Due Date</mat-label>
-        <input matInput name="date" [matDatepicker]="dp3" disabled>
+        <input matInput name="date" [matDatepicker]="dp3" required ngModel #date="ngModel">
         <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
         <mat-datepicker #dp3 disabled="false"></mat-datepicker>
       </mat-form-field>

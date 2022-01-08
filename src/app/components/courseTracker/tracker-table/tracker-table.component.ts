@@ -138,12 +138,13 @@ export class TrackerTableComponent implements OnInit {
   }
 
   deleteCourseWork() {
-    console.log(this.selectedCourseWork);
-    this.selectedCourseWork = [];
-    console.log(this.selectedCourseWork);
+    for (let i = 0; i < this.selectedCourseWork.length; i++) {
+      this.workService.deleteCourseWork(this.selectedCourseWork[i]);
+    }
+
     this.openSnackBar('Course Work Deleted', 'Dismiss');
   }
 
-  displayedColumns: string[] = ['select', 'name', 'type', 'date', 'time'];
+  displayedColumns: string[] = ['select', 'course', 'name', 'type', 'date', 'time'];
 
 }

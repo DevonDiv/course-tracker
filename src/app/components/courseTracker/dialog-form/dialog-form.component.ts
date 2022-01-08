@@ -58,13 +58,13 @@ export class DialogFormComponent implements OnInit {
   }
 
   addCourseWork(form: NgForm) {
-    // if (form.invalid) {
-    //   return;
-    // }
-    // this.workService.addCourseWork(form.value.course, form.value.name, form.value.type, form.value.date, form.value.time);
-    // this.openSnackBar('Course Work added', 'Dismiss');
-    // form.resetForm();
-    console.log(form.value.date);
+    if (form.invalid) {
+      return;
+    }
+    this.workService.addCourseWork(form.value.course, form.value.name, form.value.type, form.value.date, form.value.time);
+    this.openSnackBar('Course Work Added', 'Dismiss');
+
+    form.resetForm();
   }
 
 }

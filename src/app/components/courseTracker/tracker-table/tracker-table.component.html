@@ -1,3 +1,4 @@
+<h1>Active Course Work</h1>
 <table mat-table [dataSource]="courseWork" class="mat-elevation-z8">
 
   <!-- Select Column -->
@@ -18,6 +19,12 @@
         </mat-checkbox>
       </td>
     </ng-container>
+  </ng-container>
+
+  <!-- Course Column  -->
+  <ng-container matColumnDef="course">
+    <th mat-header-cell *matHeaderCellDef>Course</th>
+    <td mat-cell *matCellDef="let work"> {{work.course}} </td>
   </ng-container>
 
   <!-- Name Column -->
