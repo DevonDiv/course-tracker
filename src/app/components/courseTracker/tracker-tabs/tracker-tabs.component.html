@@ -1,7 +1,0 @@
-<app-no-courses *ngIf="courses.length <= 0"></app-no-courses>
-<mat-tab-group #tabGroup (selectedTabChange)="tabChanged($event)">
-  <mat-tab *ngFor="let course of courses" label="{{course.courseName}}">
-    <app-tracker-table></app-tracker-table>
-  </mat-tab>
-</mat-tab-group>
-

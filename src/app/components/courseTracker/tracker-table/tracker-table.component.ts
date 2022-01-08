@@ -11,7 +11,6 @@ import { DialogFormComponent } from '../dialog-form/dialog-form.component';
 import { Course } from '../../../services/course.model';
 import { Work } from '../../../services/work.model';
 import { WorkService } from 'src/app/services/work.service';
-import { selectedTab } from '../tracker-tabs/tracker-tabs.component';
 
 
 @Component({

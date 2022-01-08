@@ -35,7 +35,6 @@ import { HeaderCourseComponent } from './components/courseAdding/header-course/h
 import { CourseComponent } from './components/courseAdding/course/course.component';
 import { NoCoursesComponent } from './components/courseTracker/no-courses/no-courses.component';
 import { CoursesComponent } from './components/courseAdding/courses/courses.component';
-import { TrackerTabsComponent } from './components/courseTracker/tracker-tabs/tracker-tabs.component';
 import { TrackerTableComponent } from './components/courseTracker/tracker-table/tracker-table.component';
 import { AddWorkButtonComponent } from './components/courseTracker/add-work-button/add-work-button.component';
 import { DeleteWorkButtonComponent } from './components/courseTracker/delete-work-button/delete-work-button.component';
@@ -64,7 +63,6 @@ const appRoutes: Routes = [
     CourseComponent,
     NoCoursesComponent,
     CoursesComponent,
-    TrackerTabsComponent,
     TrackerTableComponent,
     AddWorkButtonComponent,
     DeleteWorkButtonComponent,
