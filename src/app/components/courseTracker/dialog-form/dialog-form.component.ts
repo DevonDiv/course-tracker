@@ -63,8 +63,12 @@ export class DialogFormComponent implements OnInit {
     }
     this.workService.addCourseWork(form.value.course, form.value.name, form.value.type, form.value.date, form.value.time);
     this.openSnackBar('Course Work Added', 'Dismiss');
-
+    this.reloadPage();
     form.resetForm();
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 
 }

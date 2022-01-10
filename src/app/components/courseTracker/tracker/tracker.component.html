@@ -1,2 +1,2 @@
 <app-no-courses *ngIf="courses.length <= 0"></app-no-courses>
-<app-tracker-table></app-tracker-table>
+<app-tracker-table *ngIf="courses.length >= 1"></app-tracker-table>
