@@ -37,6 +37,26 @@ export class WorkService {
     });
   }
 
+  editCourseWork(id: string, course: string, name: string, type: string, date: string, time: string) {
+    const courseWork: Work = {
+      id: id,
+      course: course,
+      name: name,
+      type: type,
+      date: date,
+      time: time
+    };
+
+    this.http.put('http://localhost:3000/api/courseWork/' + id, courseWork)
+    .subscribe(response => {
+      const updatedCourseWork = [...this.courseWork];
+      const oldCourseWorkIndex = updatedCourseWork.findIndex(c => c.id === courseWork.id);
+      updatedCourseWork[oldCourseWorkIndex] = courseWork;
+      this.courseWork = updatedCourseWork;
+      this.workUpdate.next([...this.courseWork]);
+    });
+  }
+
   deleteCourseWork(courseWorkId: string) {
     this.http.delete('http://localhost:3000/api/courseWork/' + courseWorkId)
     .subscribe(() => {

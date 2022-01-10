@@ -12,7 +12,12 @@ table {
 }
 
 .buttons {
+  width: 30%;
   margin-top: 1%;
   margin-right: 10%;
   float: right;
+}
+
+.buttons app-edit-work-button {
+  margin: 1%;
 }
