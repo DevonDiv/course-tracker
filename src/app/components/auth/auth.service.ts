@@ -51,7 +51,7 @@ export class AuthService {
         const now = new Date();
         const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
         this.saveAuthData(token, expirationDate);
-        this.router.navigate(["/"]);
+        this.router.navigate(['/']);
       }
 
     });
@@ -102,8 +102,8 @@ export class AuthService {
   private getAuthData() {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
-    if(!token || !expirationDate) {
-      return null;
+    if (!token || !expirationDate) {
+      return;
     }
     return {
       token: token,
