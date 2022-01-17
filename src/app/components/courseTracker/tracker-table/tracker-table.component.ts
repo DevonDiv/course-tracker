@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -27,7 +26,7 @@ export class TrackerTableComponent implements OnInit {
   selection = new SelectionModel<Work>(true, []);
 
   constructor(public workService: WorkService, private http: HttpClient,
-     private dialog: MatDialog, private snackBar: MatSnackBar) { }
+     private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.courses = this.getCourseNames();
@@ -35,14 +34,6 @@ export class TrackerTableComponent implements OnInit {
     this.courseWorkSubscription = this.workService.getCourseWorkUpdateListener()
     .subscribe((courseWork: Work[]) => {
       this.courseWork = courseWork;
-    });
-  }
-
-  //Snack Bar
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 5000,
     });
   }
 
@@ -134,7 +125,6 @@ export class TrackerTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
-    this.openSnackBar('Course Work Added', 'Dismiss');
   }
 
   deleteCourseWork() {
@@ -143,7 +133,7 @@ export class TrackerTableComponent implements OnInit {
     }
 
     this.reloadPage();
-    this.openSnackBar('Course Work Deleted', 'Dismiss');
+    // console.log(this.selectedCourseWork);
   }
 
   //method to reload the page

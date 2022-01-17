@@ -12,7 +12,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Enter Professor Email</mat-label>
-      <input matInput type="text" name="profEmail" [ngModel]="course?.profEmail" #profEmail="ngModel">
+      <input matInput type="text" name="profEmail" [ngModel]="course?.profEmail" #profEmail="ngModel" email>
       <mat-error></mat-error>
     </mat-form-field>
     <app-button></app-button>
