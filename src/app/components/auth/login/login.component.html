@@ -2,20 +2,21 @@
   <mat-card-title>
      <h2>Login</h2>
   </mat-card-title>
-  <form>
+  <form (submit)="login(loginForm)" #loginForm="ngForm">
     <div class="loginInfo">
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
-        <input matInput required email>
-        <mat-error></mat-error>
+        <input matInput name="email" ngModel #emailInput="ngModel" required email>
+        <mat-error *ngIf="emailInput.invalid"></mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" required>
+        <input matInput name="password" ngModel #passwordInput="ngModel" [type]="hide ? 'password' : 'text'" required>
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
+      <mat-error *ngIf="passwordInput.invalid"></mat-error>
     </div>
     <div class="button">
       <button mat-raised-button color="primary" type="submit">Login</button>

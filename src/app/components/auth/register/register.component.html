@@ -2,26 +2,20 @@
   <mat-card-title>
     <h2>Register</h2>
  </mat-card-title>
-  <form>
+  <form (submit)="register(registerForm)" #registerForm="ngForm">
     <div class="registerInfo">
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
-        <input matInput required>
-        <mat-error></mat-error>
+        <input matInput name="email" ngModel #emailInput="ngModel" required email>
+        <mat-error *ngIf="emailInput.invalid">Please enter a valid email</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" required>
+        <input matInput name="password" ngModel #passwordInput="ngModel" [type]="hide ? 'password' : 'text'" required>
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password again</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" required>
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
+        <mat-error *ngIf="passwordInput.invalid">Please enter the same password</mat-error>
       </mat-form-field>
     </div>
     <div class="button">

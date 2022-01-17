@@ -20,7 +20,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,11 +41,13 @@ import { DeleteWorkButtonComponent } from './components/courseTracker/delete-wor
 import { DialogFormComponent } from './components/courseTracker/dialog-form/dialog-form.component';
 import { BackButtonComponent } from './components/courseAdding/back-button/back-button.component';
 import { EditWorkButtonComponent } from './components/courseTracker/edit-work-button/edit-work-button.component';
+import { AuthInterceptor } from './components/auth/register/auth-interceptor';
+import { AuthGuard } from './components/auth/register/auth.guard';
 
 const appRoutes: Routes = [
-  {path: '', component: TrackerComponent},
-  {path: 'course', component: CourseComponent},
-  {path: 'edit/:courseId', component: CourseComponent},
+  {path: '', component: TrackerComponent, canActivate: [AuthGuard]},
+  {path: 'course', component: CourseComponent, canActivate: [AuthGuard]},
+  {path: 'edit/:courseId', component: CourseComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent}
 ]
@@ -95,7 +97,7 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
