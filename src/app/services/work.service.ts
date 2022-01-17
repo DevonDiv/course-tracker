@@ -25,6 +25,7 @@ export class WorkService {
       name: name,
       type: type,
       date: date,
+      // date: date.substring(0, 10),
       time: time
     };
 

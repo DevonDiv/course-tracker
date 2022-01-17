@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -26,7 +27,7 @@ export class TrackerTableComponent implements OnInit {
   selection = new SelectionModel<Work>(true, []);
 
   constructor(public workService: WorkService, private http: HttpClient,
-     private dialog: MatDialog) { }
+     private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.courses = this.getCourseNames();
@@ -34,6 +35,14 @@ export class TrackerTableComponent implements OnInit {
     this.courseWorkSubscription = this.workService.getCourseWorkUpdateListener()
     .subscribe((courseWork: Work[]) => {
       this.courseWork = courseWork;
+    });
+  }
+
+  //Snackbar
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
     });
   }
 
@@ -127,18 +136,21 @@ export class TrackerTableComponent implements OnInit {
     });
   }
 
+  editCourseWork() {
+    if(this.selectedCourseWork.length > 1) {
+      this.openSnackBar("Too many items selected. Please select one item only", "Dismiss");
+    } else if (this.selectedCourseWork.length <= 0) {
+      this.openSnackBar("Please select one item", "Dismiss");
+    }
+
+    //edit course
+  }
+
   deleteCourseWork() {
     for (let i = 0; i < this.selectedCourseWork.length; i++) {
       this.workService.deleteCourseWork(this.selectedCourseWork[i]);
     }
 
-    this.reloadPage();
-    // console.log(this.selectedCourseWork);
-  }
-
-  //method to reload the page
-  reloadPage() {
-    window.location.reload();
   }
 
   displayedColumns: string[] = ['select', 'course', 'name', 'type', 'date', 'time'];

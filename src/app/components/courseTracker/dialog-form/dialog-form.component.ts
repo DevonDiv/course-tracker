@@ -54,12 +54,13 @@ export class DialogFormComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.workService.addCourseWork(form.value.course, form.value.name, form.value.type, form.value.date, form.value.time);
-    this.reloadPage();
-  }
 
-  reloadPage() {
-    window.location.reload();
+    // let date = form.value.date;
+    // let dateString = date.toISOString();
+    // dateString = dateString.substring(0, 10);
+
+    this.workService.addCourseWork(form.value.course, form.value.name, form.value.type, form.value.date, form.value.time);
+    form.reset();
   }
 
 }
