@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '../auth.service';
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
   userIsAuthenticated = false;
   authListenerSubs: Subscription;
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.userIsAuthenticated = this.authService.getIsAuth();
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit {
       this.userIsAuthenticated = isAuthenticated;
     });
     if(this.userIsAuthenticated) {
-      this.authService.logout();
+      this.router.navigate(['/']);
     }
   }
 

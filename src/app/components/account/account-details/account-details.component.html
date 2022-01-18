@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-title>
+    <h1>Account Information</h1>
+  </mat-card-title>
+  <div class="email-form">
+    <form (submit)="updateEmail(emailForm)" #emailForm="ngForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your old email</mat-label>
+        <input matInput name="oldEmail" ngModel #oldEmailInput="ngModel" required email>
+        <mat-error *ngIf="oldEmailInput.invalid"></mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your new email</mat-label>
+        <input matInput name="newEmail" ngModel #newEmailInput="ngModel" required email>
+        <mat-error *ngIf="newEmailInput.invalid"></mat-error>
+      </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Update Email</button>
+    </form>
+  </div>
+  <div class="password-form">
+    <form (submit)="passwordForm" #passwordForm="ngForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your old password</mat-label>
+        <input matInput name="oldPassword" ngModel #oldPasswordInput="ngModel" [type]="hide ? 'password' : 'text'" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your new password</mat-label>
+        <input matInput name="newPassword" ngModel #newPasswordInput="ngModel" [type]="hide ? 'password' : 'text'" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Update Password</button>
+    </form>
+  </div>
+</mat-card>
