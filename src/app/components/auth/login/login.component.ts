@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { AuthService } from '../auth.service';
 
@@ -11,10 +12,19 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
 
   hide = true;
+  userIsAuthenticated = false;
+  authListenerSubs: Subscription;
 
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    });
+    if(this.userIsAuthenticated) {
+      this.authService.logout();
+    }
   }
 
   login(form: NgForm) {
