@@ -69,14 +69,6 @@ export class TrackerTableComponent implements OnInit {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
 
-    if (this.selection.isSelected(row)) {
-      this.selectedCourseWork.push(row.id);
-
-      this.selectedCourseWork = this.selectedCourseWork.filter((item, pos) => {
-        return this.selectedCourseWork.indexOf(item) === pos;
-      });
-    }
-
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
   }
 
@@ -152,11 +144,15 @@ export class TrackerTableComponent implements OnInit {
   }
 
   deleteCourseWork() {
-    // for (let i = 0; i < this.selection.selected.length; i++) {
-    //   this.workService.deleteCourseWork(this.selection.selected[i]);
-    // }
-    console.log(this.selection.selected);
+    for (let i = 0; i < this.selection.selected.length; i++) {
+      this.workService.deleteCourseWork(this.selection.selected[i].id);
+    }
 
+    this.reloadPage();
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 
   displayedColumns: string[] = ['select', 'course', 'name', 'type', 'date', 'time'];
