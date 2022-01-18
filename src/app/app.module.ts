@@ -21,6 +21,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -44,13 +45,15 @@ import { BackButtonComponent } from './components/courseAdding/back-button/back-
 import { EditWorkButtonComponent } from './components/courseTracker/edit-work-button/edit-work-button.component';
 import { AuthInterceptor } from './components/auth/register/auth-interceptor';
 import { AuthGuard } from './components/auth/register/auth.guard';
+import { AccountDetailsComponent } from './components/account/account-details/account-details.component';
 
 const appRoutes: Routes = [
   {path: '', component: TrackerComponent, canActivate: [AuthGuard]},
   {path: 'course', component: CourseComponent, canActivate: [AuthGuard]},
   {path: 'edit/:courseId', component: CourseComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'accountInfo', component: AccountDetailsComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({
@@ -72,7 +75,8 @@ const appRoutes: Routes = [
     DeleteWorkButtonComponent,
     DialogFormComponent,
     BackButtonComponent,
-    EditWorkButtonComponent
+    EditWorkButtonComponent,
+    AccountDetailsComponent
   ],
   imports: [
     BrowserModule,

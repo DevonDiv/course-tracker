@@ -2,10 +2,14 @@
   <mat-toolbar-row>
     <span><a routerLink="/">Course Tracker</a></span>
     <span class="spacer"></span>
-    <button mat-icon-button *ngIf="hasRoute('/') || hasRoute('/course')" [matMenuTriggerFor]="menu">
+    <button mat-icon-button *ngIf="hasRoute('/') || hasRoute('/course') || hasRoute('/accountInfo')" [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/accountInfo">
+        <mat-icon>account_circle</mat-icon>
+        <span>Account Info</span>
+      </button>
       <button mat-menu-item routerLink="/">
         <mat-icon>school</mat-icon>
         <span>Course Work</span>
