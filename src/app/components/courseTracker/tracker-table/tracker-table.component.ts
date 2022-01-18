@@ -80,6 +80,8 @@ export class TrackerTableComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
   }
 
+
+
   //Courses
 
   getCourseNames() {
@@ -150,15 +152,11 @@ export class TrackerTableComponent implements OnInit {
   }
 
   deleteCourseWork() {
-    for (let i = 0; i < this.selectedCourseWork.length; i++) {
-      this.workService.deleteCourseWork(this.selectedCourseWork[i]);
-    }
+    // for (let i = 0; i < this.selection.selected.length; i++) {
+    //   this.workService.deleteCourseWork(this.selection.selected[i]);
+    // }
+    console.log(this.selection.selected);
 
-    this.reloadPage();
-  }
-
-  reloadPage() {
-    window.location.reload();
   }
 
   displayedColumns: string[] = ['select', 'course', 'name', 'type', 'date', 'time'];
