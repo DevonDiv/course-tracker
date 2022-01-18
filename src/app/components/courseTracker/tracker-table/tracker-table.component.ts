@@ -11,6 +11,7 @@ import { DialogFormComponent } from '../dialog-form/dialog-form.component';
 import { Course } from '../../../services/course.model';
 import { Work } from '../../../services/work.model';
 import { WorkService } from 'src/app/services/work.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class TrackerTableComponent implements OnInit {
   selection = new SelectionModel<Work>(true, []);
 
   constructor(public workService: WorkService, private http: HttpClient,
-     private dialog: MatDialog, private snackBar: MatSnackBar) { }
+     private dialog: MatDialog, private snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
     this.courses = this.getCourseNames();
@@ -137,13 +138,15 @@ export class TrackerTableComponent implements OnInit {
   }
 
   editCourseWork() {
+    let courseWorkId = this.selectedCourseWork[0];
     if(this.selectedCourseWork.length > 1) {
       this.openSnackBar("Too many items selected. Please select one item only", "Dismiss");
     } else if (this.selectedCourseWork.length <= 0) {
       this.openSnackBar("Please select one item", "Dismiss");
+    } else {
+      // this.router.navigate(["/edit-course-work", courseWorkId]);
     }
 
-    //edit course
   }
 
   deleteCourseWork() {
