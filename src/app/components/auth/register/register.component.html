@@ -2,7 +2,8 @@
   <mat-card-title>
     <h2>Register</h2>
  </mat-card-title>
-  <form (submit)="register(registerForm)" #registerForm="ngForm">
+ <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="register(registerForm)" #registerForm="ngForm" *ngIf="!isLoading">
     <div class="registerInfo">
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>

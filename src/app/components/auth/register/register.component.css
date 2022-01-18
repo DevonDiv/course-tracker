@@ -12,6 +12,10 @@ mat-card {
   transform: translate(-50%, -50%);
 }
 
+mat-spinner {
+  margin: auto;
+}
+
 form {
   padding-top: 5%;
   position: absolute;

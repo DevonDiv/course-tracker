@@ -2,7 +2,8 @@
   <mat-card-title>
      <h2>Login</h2>
   </mat-card-title>
-  <form (submit)="login(loginForm)" #loginForm="ngForm">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="login(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
     <div class="loginInfo">
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
