@@ -60,7 +60,11 @@ export class DialogFormComponent implements OnInit {
     // dateString = dateString.substring(0, 10);
 
     this.workService.addCourseWork(form.value.course, form.value.name, form.value.type, form.value.date, form.value.time);
-    form.reset();
+    this.reloadPage();
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 
 }

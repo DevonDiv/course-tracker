@@ -151,6 +151,11 @@ export class TrackerTableComponent implements OnInit {
       this.workService.deleteCourseWork(this.selectedCourseWork[i]);
     }
 
+    this.reloadPage();
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 
   displayedColumns: string[] = ['select', 'course', 'name', 'type', 'date', 'time'];
