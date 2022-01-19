@@ -21,7 +21,8 @@ export class CourseService {
           id: course._id,
           courseName: course.courseName,
           profName: course.profName,
-          profEmail: course.profEmail
+          profEmail: course.profEmail,
+          creator: course.creator
         };
       });
     }))
