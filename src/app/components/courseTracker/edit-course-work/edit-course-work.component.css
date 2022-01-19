@@ -1,0 +1,13 @@
+mat-card {
+  width: 30%;
+  margin: 10% auto;
+}
+
+.course-work {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  width: 100%;
+}
