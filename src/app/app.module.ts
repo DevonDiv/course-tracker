@@ -46,11 +46,13 @@ import { EditWorkButtonComponent } from './components/courseTracker/edit-work-bu
 import { AuthInterceptor } from './components/auth/register/auth-interceptor';
 import { AuthGuard } from './components/auth/register/auth.guard';
 import { AccountDetailsComponent } from './components/account/account-details/account-details.component';
+import { EditCourseWorkComponent } from './components/courseTracker/edit-course-work/edit-course-work.component';
 
 const appRoutes: Routes = [
   {path: '', component: TrackerComponent, canActivate: [AuthGuard]},
   {path: 'course', component: CourseComponent, canActivate: [AuthGuard]},
   {path: 'edit/:courseId', component: CourseComponent, canActivate: [AuthGuard]},
+  {path: 'edit-course-work/:courseWorkId', component: EditCourseWorkComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'accountInfo', component: AccountDetailsComponent, canActivate: [AuthGuard]}
@@ -76,7 +78,8 @@ const appRoutes: Routes = [
     DialogFormComponent,
     BackButtonComponent,
     EditWorkButtonComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    EditCourseWorkComponent
   ],
   imports: [
     BrowserModule,

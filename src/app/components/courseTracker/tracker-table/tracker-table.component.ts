@@ -27,6 +27,8 @@ export class TrackerTableComponent implements OnInit {
   private courseWorkSubscription: Subscription = new Subscription;
   selection = new SelectionModel<Work>(true, []);
 
+  isLoading = false;
+
   constructor(public workService: WorkService, private http: HttpClient,
      private dialog: MatDialog, private snackBar: MatSnackBar, private router: Router) { }
 
@@ -47,7 +49,7 @@ export class TrackerTableComponent implements OnInit {
     });
   }
 
-  //Checkbox
+  //Table
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -71,8 +73,6 @@ export class TrackerTableComponent implements OnInit {
 
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
   }
-
-
 
   //Courses
 
@@ -133,17 +133,19 @@ export class TrackerTableComponent implements OnInit {
 
   editCourseWork() {
     let courseWorkId = this.selectedCourseWork[0];
-    if(this.selectedCourseWork.length > 1) {
+    if(this.selection.selected.length > 1) {
       this.openSnackBar("Too many items selected. Please select one item only", "Dismiss");
-    } else if (this.selectedCourseWork.length <= 0) {
+    } else if (this.selection.selected.length <= 0) {
       this.openSnackBar("Please select one item", "Dismiss");
     } else {
-      // this.router.navigate(["/edit-course-work", courseWorkId]);
+      this.router.navigate(['/edit-course-work/', this.selection.selected[0].id]);
     }
 
   }
 
   deleteCourseWork() {
+    this.isLoading = true;
+
     for (let i = 0; i < this.selection.selected.length; i++) {
       this.workService.deleteCourseWork(this.selection.selected[i].id);
     }
