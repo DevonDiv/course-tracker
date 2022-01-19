@@ -24,7 +24,8 @@ export class WorkService {
           name: courseWork.name,
           type: courseWork.type,
           date: courseWork.date,
-          time: courseWork.time
+          time: courseWork.time,
+          creator: courseWork.creator
         };
       });
     }))
