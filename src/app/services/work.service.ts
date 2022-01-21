@@ -35,8 +35,8 @@ export class WorkService {
     });
   }
 
-  getCourseWorkById(courseWorkId: string) {
-    return {...this.courseWork.find(c => c.id === courseWorkId)};
+  getCourseWorkById(id: string) {
+    return this.courseWork.find(c => c.id === id);
   }
 
   getCourseWorkUpdateListener() {
@@ -50,7 +50,6 @@ export class WorkService {
       name: name,
       type: type,
       date: date,
-      // date: date.substring(0, 10),
       time: time
     };
 

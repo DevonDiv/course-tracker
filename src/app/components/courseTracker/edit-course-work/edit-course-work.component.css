@@ -3,6 +3,10 @@ mat-card {
   margin: 10% auto;
 }
 
+mat-spinner {
+  margin: auto;
+}
+
 .course-work {
   display: flex;
   flex-direction: column;

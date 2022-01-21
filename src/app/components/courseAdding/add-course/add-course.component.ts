@@ -29,12 +29,13 @@ export class AddCourseComponent implements OnInit {
         this.mode = 'edit';
         this.courseId = paramMap.get('courseId');
         this.course = this.courseService.getCourse(this.courseId);
+        console.log(this.courseId);
+        console.log(this.course);
       } else {
         this.mode = 'create';
         this.courseId = null;
       }
     });
-    console.log(this.mode);
   }
 
   openSnackBar(message: string, action: string) {
