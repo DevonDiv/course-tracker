@@ -26,9 +26,6 @@ export class AuthService {
     return this.authStatusListener.asObservable();
   }
 
-  getUserEmail() {
-
-  }
 
   createUser(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
