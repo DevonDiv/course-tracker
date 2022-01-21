@@ -55,12 +55,7 @@ export class DialogFormComponent implements OnInit {
       return;
     }
 
-    let date = form.value.date;
-    let dateString = date.toISOString();
-    let d = dateString.substring(0, 10);
-    console.log(d);
-
-    this.workService.addCourseWork(form.value.course, form.value.name, form.value.type, d, form.value.time);
+    this.workService.addCourseWork(form.value.course, form.value.name, form.value.type, form.value.date, form.value.time);
     this.reloadPage();
   }
 

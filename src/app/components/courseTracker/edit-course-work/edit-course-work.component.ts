@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { Course } from '../../../services/course.model';
 import { WorkService } from '../../../services/work.service';
@@ -16,13 +16,15 @@ import { Work } from 'src/app/services/work.model';
 export class EditCourseWorkComponent implements OnInit {
 
   courses: Course[] = [];
-  courseWork: Work;
+  courseWork: Work;;
   private courseWorkId: string;
 
+  isLoading = false;
   selectedCourse: string;
   selectedType: string;
 
-  constructor(private http: HttpClient, private workService: WorkService, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private workService: WorkService,
+     private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.getCourseNames();
@@ -63,7 +65,9 @@ export class EditCourseWorkComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+    this.isLoading = true;
     this.workService.updateCourseWork(this.courseWorkId, form.value.course, form.value.name, form.value.type, form.value.date, form.value.time);
+    this.router.navigate(['/']);
   }
 
 }
