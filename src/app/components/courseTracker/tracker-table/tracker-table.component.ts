@@ -132,7 +132,6 @@ export class TrackerTableComponent implements OnInit {
   }
 
   editCourseWork() {
-    let courseWorkId = this.selectedCourseWork[0];
     if(this.selection.selected.length > 1) {
       this.openSnackBar("Too many items selected. Please select one item only", "Dismiss");
     } else if (this.selection.selected.length <= 0) {
@@ -144,13 +143,19 @@ export class TrackerTableComponent implements OnInit {
   }
 
   deleteCourseWork() {
-    this.isLoading = true;
 
-    for (let i = 0; i < this.selection.selected.length; i++) {
-      this.workService.deleteCourseWork(this.selection.selected[i].id);
+    if(this.selection.selected.length >= 1) {
+      this.isLoading = true;
+
+      for (let i = 0; i < this.selection.selected.length; i++) {
+        this.workService.deleteCourseWork(this.selection.selected[i].id);
+      }
+
+      this.reloadPage();
+    } else {
+      this.openSnackBar("Please select at least one item", "Dismiss");
     }
 
-    this.reloadPage();
   }
 
   reloadPage() {
