@@ -3,22 +3,20 @@
     <h2>Register</h2>
  </mat-card-title>
  <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form (submit)="register(registerForm)" #registerForm="ngForm" *ngIf="!isLoading">
-    <div class="registerInfo">
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput name="email" ngModel #emailInput="ngModel" required email>
-        <mat-error *ngIf="emailInput.invalid">Please enter a valid email</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        <input matInput name="password" ngModel #passwordInput="ngModel" [type]="hide ? 'password' : 'text'" required>
-        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        <mat-error *ngIf="passwordInput.invalid">Please enter the same password</mat-error>
-      </mat-form-field>
-    </div>
+  <form class="register-info" (submit)="register(registerForm)" #registerForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput name="email" ngModel #emailInput="ngModel" required email>
+      <mat-error *ngIf="emailInput.invalid">Please enter a valid email</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input matInput name="password" ngModel #passwordInput="ngModel" [type]="hide ? 'password' : 'text'" required>
+      <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="passwordInput.invalid">Please enter the same password</mat-error>
+    </mat-form-field>
     <div class="button">
       <button mat-raised-button color="primary" type="submit">Register</button>
     </div>

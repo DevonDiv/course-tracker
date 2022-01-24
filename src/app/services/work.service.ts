@@ -35,7 +35,7 @@ export class WorkService {
     });
   }
 
-  getCourseWorkById(id: string) {
+  async getCourseWorkById(id: string) {
     return this.courseWork.find(c => c.id === id);
   }
 

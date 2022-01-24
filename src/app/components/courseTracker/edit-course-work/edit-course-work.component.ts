@@ -16,7 +16,7 @@ import { Work } from 'src/app/services/work.model';
 export class EditCourseWorkComponent implements OnInit {
 
   courses: Course[] = [];
-  courseWork: Work;;
+  courseWork: Work;
   private courseWorkId: string;
 
   isLoading = false;
@@ -26,13 +26,16 @@ export class EditCourseWorkComponent implements OnInit {
   constructor(private http: HttpClient, private workService: WorkService,
      private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.workService.getCourseWork();
     this.getCourseNames();
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+    this.route.paramMap.subscribe(async (paramMap: ParamMap) => {
+      console.log(paramMap.get('courseWorkId'));
       if (paramMap.has('courseWorkId')) {
         this.courseWorkId = paramMap.get('courseWorkId');
-        this.courseWork = this.workService.getCourseWorkById(this.courseWorkId);
+        this.courseWork = await this.workService.getCourseWorkById(this.courseWorkId);
+        this.selectedCourse = await this.courseWork.course;
+        this.selectedType = await this.courseWork.type;
       }
     });
   }

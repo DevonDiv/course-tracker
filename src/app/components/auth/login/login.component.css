@@ -1,12 +1,12 @@
 mat-card-title {
   text-align: center;
   padding-top: 5%;;
+  padding-bottom: 5%;
 }
 
 mat-card {
   height: 35%;
   width: 20%;
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -16,11 +16,9 @@ mat-spinner {
   margin: auto;
 }
 
-form {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.login-info {
+  display: flex;
+  flex-direction: column;
 }
 
 mat-form-field {
