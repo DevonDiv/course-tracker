@@ -35,9 +35,31 @@ export class WorkService {
     });
   }
 
+  // TODO
   async getCourseWorkById(id: string) {
     return this.courseWork.find(c => c.id === id);
   }
+
+  // getCourseWorkById(id: string) {
+  //   this.http.get<{ message: string, courseWork: any }>('http://localhost:3000/api/courseWork/' + id)
+  //   .pipe(map((courseWorkData) => {
+  //     return courseWorkData.courseWork.map(courseWork => {
+  //       return {
+  //         id: courseWork._id,
+  //         course: courseWork.course,
+  //         name: courseWork.name,
+  //         type: courseWork.type,
+  //         date: courseWork.date,
+  //         time: courseWork.time,
+  //         creator: courseWork.creator
+  //       };
+  //     });
+  //   }))
+  //   .subscribe((transformedCourseWork) => {
+  //     this.courseWork = transformedCourseWork;
+  //     this.workUpdate.next([...this.courseWork]);
+  //   });
+  // }
 
   getCourseWorkUpdateListener() {
     return this.workUpdate.asObservable();

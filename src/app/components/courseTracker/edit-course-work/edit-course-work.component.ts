@@ -27,17 +27,21 @@ export class EditCourseWorkComponent implements OnInit {
      private route: ActivatedRoute, private router: Router) { }
 
   async ngOnInit() {
-    this.workService.getCourseWork();
     this.getCourseNames();
     this.route.paramMap.subscribe(async (paramMap: ParamMap) => {
       console.log(paramMap.get('courseWorkId'));
       if (paramMap.has('courseWorkId')) {
         this.courseWorkId = paramMap.get('courseWorkId');
         this.courseWork = await this.workService.getCourseWorkById(this.courseWorkId);
+        console.log(this.courseWork);
         this.selectedCourse = await this.courseWork.course;
         this.selectedType = await this.courseWork.type;
       }
     });
+  }
+
+  loadCourseWork() {
+
   }
 
   getCourseNames() {

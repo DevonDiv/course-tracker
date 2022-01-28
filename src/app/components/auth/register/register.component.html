@@ -11,11 +11,11 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Enter your password</mat-label>
-      <input matInput name="password" ngModel #passwordInput="ngModel" [type]="hide ? 'password' : 'text'" required>
+      <input matInput name="password" minlength="8" ngModel #passwordInput="ngModel" [type]="hide ? 'password' : 'text'" required>
       <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
-      <mat-error *ngIf="passwordInput.invalid">Please enter the same password</mat-error>
+      <mat-error *ngIf="passwordInput.invalid">Please use at least 8 characters</mat-error>
     </mat-form-field>
     <div class="button">
       <button mat-raised-button color="primary" type="submit">Register</button>

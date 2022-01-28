@@ -35,6 +35,7 @@
       <input matInput type="time" name="time" min="0:00" max="23:59" required [ngModel]="courseWork?.time" #time="ngModel">
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Update</button>
+    <button mat-raised-button color="warn" routerLink="/">Cancel</button>
   </form>
   </div>
 </mat-card>
