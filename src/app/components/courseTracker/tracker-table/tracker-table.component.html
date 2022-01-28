@@ -56,10 +56,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <div class="buttons">
-    <app-add-work-button *ngIf="courses.length >= 1"  (click)="addCourseWork()"></app-add-work-button>
-    <app-edit-work-button *ngIf="courses.length >= 1" (click)="editCourseWork()"></app-edit-work-button>
-    <app-delete-work-button *ngIf="courses.length >= 1" (click)="deleteCourseWork()"></app-delete-work-button>
-  </div>
+</div>
+<div class="buttons" *ngIf="!isLoading">
+  <app-add-work-button *ngIf="courses.length >= 1"  (click)="addCourseWork()"></app-add-work-button>
+  <app-edit-work-button *ngIf="courses.length >= 1" (click)="editCourseWork()"></app-edit-work-button>
+  <app-delete-work-button *ngIf="courses.length >= 1" (click)="deleteCourseWork()"></app-delete-work-button>
 </div>
 
