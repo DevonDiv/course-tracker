@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +13,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent implements OnInit {
 
   isLoading = false;
+  error = false;
   hide = true;
   userIsAuthenticated = false;
   authListenerSubs: Subscription;
   loginStatus: any;
 
-  constructor(public authService: AuthService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.userIsAuthenticated = this.authService.getIsAuth();
@@ -36,19 +36,14 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.isLoading = true;
+    this.error = false;
     this.authService.login(form.value.email, form.value.password);
     setTimeout(() => {
       if(!this.userIsAuthenticated) {
         this.isLoading = false;
-        this.openSnackBar();
+        this.error = true;
       }
     }, 2000);
-  }
-
-  openSnackBar() {
-    this.snackBar.open('Email/Password is Incorrect', 'Close', {
-      duration: 5000,
-    });
   }
 
 }

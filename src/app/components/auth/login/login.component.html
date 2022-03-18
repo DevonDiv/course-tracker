@@ -1,4 +1,7 @@
-<mat-card>
+<mat-card class="error" *ngIf="error">
+  <mat-card-content>Email/Password Incorrect</mat-card-content>
+</mat-card>
+<mat-card class="login">
   <mat-card-title>
      <h2>Login</h2>
   </mat-card-title>
