@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NgForm } from '@angular/forms';
 
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -13,6 +14,7 @@ import { Work } from '../../../services/work.model';
 import { WorkService } from 'src/app/services/work.service';
 import { Router } from '@angular/router';
 
+let selectedCourseWork;
 
 @Component({
   selector: 'app-tracker-table',
@@ -23,7 +25,6 @@ export class TrackerTableComponent implements OnInit {
 
   courses: Course[] = [];
   courseWork: Work[] = [];
-  selectedCourseWork: string[] = [];
   private courseWorkSubscription: Subscription = new Subscription;
   selection = new SelectionModel<Work>(true, []);
 
@@ -137,9 +138,16 @@ export class TrackerTableComponent implements OnInit {
     } else if (this.selection.selected.length <= 0) {
       this.openSnackBar("Please select one item", "Dismiss");
     } else {
-      this.router.navigate(['/edit-course-work/', this.selection.selected[0].id]);
-    }
+      // this.router.navigate(['/edit-course-work/', this.selection.selected[0].id]);
+      // console.log(this.selection.selected[0]);
+      selectedCourseWork = this.selection.selected[0];
+      console.log("From selection model => ", selectedCourseWork);
+      const dialogRef = this.dialog.open(EditDialogFormComponent);
 
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
   }
 
   deleteCourseWork() {
@@ -163,5 +171,60 @@ export class TrackerTableComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['select', 'course', 'name', 'type', 'date', 'time'];
+
+}
+
+@Component({
+  selector: 'app-edit-dialog-form',
+  templateUrl: '../edit-dialog-form/edit-dialog-form.component.html',
+  styleUrls: ['../edit-dialog-form/edit-dialog-form.component.css']
+})
+export class EditDialogFormComponent implements OnInit {
+
+  courses: Course[] = [];
+  isLoading = false;
+  courseWork = selectedCourseWork;
+
+  constructor(private http: HttpClient, private workService: WorkService) { }
+
+  ngOnInit(): void {
+    this.getCourseNames();
+  }
+
+  getCourseNames() {
+    let courseName = [];
+    this.http.get<{ message: string, courses: any }>('http://localhost:3000/api/courses')
+    .pipe(map((courseData) => {
+      return courseData.courses.map(course => {
+        return {
+          id: course._id,
+          courseName: course.courseName,
+          profName: course.profName,
+          profEmail: course.profEmail
+        };
+      });
+    }))
+    .subscribe((transformedCourse) => {
+      this.courses = transformedCourse;
+    });
+
+    for (let i = 0; i < this.courses.length; i++) {
+      courseName.push(this.courses[i].courseName);
+    }
+    return courseName;
+  }
+
+  updateCourseWork(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    this.isLoading = true;
+    this.workService.updateCourseWork(this.courseWork.id, form.value.course, form.value.name, form.value.type, form.value.date, form.value.time);
+    this.reloadPage();
+  }
+
+  reloadPage() {
+    window.location.reload();
+  }
 
 }

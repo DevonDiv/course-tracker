@@ -15,6 +15,7 @@
       <input matInput type="text" name="profEmail" [ngModel]="course?.profEmail" #profEmail="ngModel" email>
       <mat-error></mat-error>
     </mat-form-field>
-    <app-button></app-button>
+    <button mat-raised-button *ngIf="mode === 'create'" type="submit">Add Courses</button>
+    <button mat-raised-button *ngIf="mode === 'edit'" type="submit">Update Courses</button>
   </div>
 </form>

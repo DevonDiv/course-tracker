@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   hide = true;
   userIsAuthenticated = false;
   authListenerSubs: Subscription;
+  loginStatus: any;
 
   constructor(public authService: AuthService, private router: Router, private snackBar: MatSnackBar) { }
 
@@ -36,6 +37,12 @@ export class LoginComponent implements OnInit {
     }
     this.isLoading = true;
     this.authService.login(form.value.email, form.value.password);
+    setTimeout(() => {
+      if(!this.userIsAuthenticated) {
+        this.isLoading = false;
+        this.openSnackBar();
+      }
+    }, 2000);
   }
 
   openSnackBar() {

@@ -35,6 +35,7 @@ router.get("", checkAuth, (req, res, next) => {
 router.get("/:id", checkAuth, (req, res, next) => {
   CourseWork.findById(req.params.id).then(courseWork => {
     if (courseWork) {
+      console.log(courseWork);
       res.status(200).json(courseWork);
     } else {
       res.status(404).json({ message: "Course Work not found!" });

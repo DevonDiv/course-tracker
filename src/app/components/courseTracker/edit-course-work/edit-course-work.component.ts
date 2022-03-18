@@ -5,8 +5,9 @@ import { map } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { Course } from '../../../services/course.model';
+import { CourseService } from '../../../services/course.service';
 import { WorkService } from '../../../services/work.service';
-import { Work } from 'src/app/services/work.model';
+import { Work } from '../../../services/work.model';
 
 @Component({
   selector: 'app-edit-course-work',
@@ -24,24 +25,21 @@ export class EditCourseWorkComponent implements OnInit {
   selectedType: string;
 
   constructor(private http: HttpClient, private workService: WorkService,
-     private route: ActivatedRoute, private router: Router) { }
+     private route: ActivatedRoute, private router: Router, private courseService: CourseService) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.workService.getCourseWork();
     this.getCourseNames();
-    this.route.paramMap.subscribe(async (paramMap: ParamMap) => {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
       console.log(paramMap.get('courseWorkId'));
       if (paramMap.has('courseWorkId')) {
         this.courseWorkId = paramMap.get('courseWorkId');
-        this.courseWork = await this.workService.getCourseWorkById(this.courseWorkId);
+        this.courseWork = this.workService.getCourseWorkById(this.courseWorkId);
         console.log(this.courseWork);
-        this.selectedCourse = await this.courseWork.course;
-        this.selectedType = await this.courseWork.type;
+        this.selectedCourse = this.courseWork.course;
+        this.selectedType = this.courseWork.type;
       }
     });
-  }
-
-  loadCourseWork() {
-
   }
 
   getCourseNames() {
