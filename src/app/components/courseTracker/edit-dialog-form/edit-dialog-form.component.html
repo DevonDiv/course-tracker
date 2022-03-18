@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Edit Course Work</h1>
+<div mat-dialog-content>
+<form class="course-work" (submit)="updateCourseWork(postForm)" #postForm="ngForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Select Course</mat-label>
+    <mat-select required [(ngModel)]="courseWork.course" name="course">
+      <mat-option *ngFor="let course of courses" [value]="course.courseName">
+        {{course.courseName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" name="name" required [(ngModel)]="courseWork.name" #name="ngModel">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+      <mat-select required [(ngModel)]="courseWork.type" name="type">
+        <mat-option value="Assignment">Assignment</mat-option>
+        <mat-option value="Quiz">Quiz</mat-option>
+        <mat-option value="Test">Test</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Due Date</mat-label>
+        <input matInput name="date" [matDatepicker]="dp3" required [(ngModel)]="courseWork.date" #date="ngModel">
+        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </p>
+  <mat-form-field appearance="fill">
+    <mat-label>Time</mat-label>
+    <input matInput type="time" name="time" min="0:00" max="23:59" required [(ngModel)]="courseWork.time" #time="ngModel">
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Update</button>
+</form>
+</div>

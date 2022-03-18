@@ -34,7 +34,7 @@ router.post("/login", (req, res, next) => {
   User.findOne({ email: req.body.email }).then(user => {
     if(!user) {
       return res.status(401).json({
-        message: "Auth failed"
+        message: "Incorrect email"
       });
     }
     fetchedUser = user;
@@ -43,7 +43,7 @@ router.post("/login", (req, res, next) => {
     .then(result => {
       if(!result) {
         return res.status(401).json({
-          message: "Auth failed"
+          message: "Incorrect Password"
         });
       }
       const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id},

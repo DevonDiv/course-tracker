@@ -16,7 +16,6 @@ import { WorkService } from 'src/app/services/work.service';
 export class DialogFormComponent implements OnInit {
 
   courses: Course[] = [];
-  dialogRef: any;
 
   selectedCourse: string;
   selectedType: string;

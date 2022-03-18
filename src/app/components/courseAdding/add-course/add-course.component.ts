@@ -18,7 +18,7 @@ export class AddCourseComponent implements OnInit {
   enteredProfEmail = '';
 
   course: Course;
-  private mode = 'create';
+  mode = 'create';
   private courseId: string;
 
   constructor(public courseService: CourseService, private snackBar: MatSnackBar, public route: ActivatedRoute) { }

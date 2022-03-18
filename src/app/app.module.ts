@@ -19,8 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -32,7 +31,6 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { TrackerComponent } from './components/courseTracker/tracker/tracker.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { AddCourseComponent } from './components/courseAdding/add-course/add-course.component';
-import { ButtonComponent } from './components/courseAdding/button/button.component';
 import { HeaderCourseComponent } from './components/courseAdding/header-course/header-course.component';
 import { CourseComponent } from './components/courseAdding/course/course.component';
 import { NoCoursesComponent } from './components/courseTracker/no-courses/no-courses.component';
@@ -47,12 +45,13 @@ import { AuthInterceptor } from './components/auth/register/auth-interceptor';
 import { AuthGuard } from './components/auth/register/auth.guard';
 import { AccountDetailsComponent } from './components/account/account-details/account-details.component';
 import { EditCourseWorkComponent } from './components/courseTracker/edit-course-work/edit-course-work.component';
+import { EditDialogFormComponent } from './components/courseTracker/tracker-table/tracker-table.component';
 
 const appRoutes: Routes = [
   {path: '', component: TrackerComponent, canActivate: [AuthGuard]},
   {path: 'course', component: CourseComponent, canActivate: [AuthGuard]},
   {path: 'edit/:courseId', component: CourseComponent, canActivate: [AuthGuard]},
-  {path: 'edit-course-work/:courseWorkId', component: EditCourseWorkComponent, canActivate: [AuthGuard]},
+  // {path: 'edit-course-work/:courseWorkId', component: EditCourseWorkComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'accountInfo', component: AccountDetailsComponent, canActivate: [AuthGuard]}
@@ -67,7 +66,6 @@ const appRoutes: Routes = [
     TrackerComponent,
     RegisterComponent,
     AddCourseComponent,
-    ButtonComponent,
     HeaderCourseComponent,
     CourseComponent,
     NoCoursesComponent,
@@ -79,7 +77,8 @@ const appRoutes: Routes = [
     BackButtonComponent,
     EditWorkButtonComponent,
     AccountDetailsComponent,
-    EditCourseWorkComponent
+    EditCourseWorkComponent,
+    EditDialogFormComponent
   ],
   imports: [
     BrowserModule,

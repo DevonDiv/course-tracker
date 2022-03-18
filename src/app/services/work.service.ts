@@ -12,6 +12,9 @@ export class WorkService {
   private courseWork: Work[] = [];
   private workUpdate = new Subject<Work[]>();
 
+  private courseWorkById: Work;
+  private courseWorkUpdate = new Subject<Work>();
+
   constructor(private http: HttpClient) {}
 
   getCourseWork() {
@@ -35,31 +38,32 @@ export class WorkService {
     });
   }
 
-  // TODO
-  async getCourseWorkById(id: string) {
-    return this.courseWork.find(c => c.id === id);
-  }
-
   // getCourseWorkById(id: string) {
-  //   this.http.get<{ message: string, courseWork: any }>('http://localhost:3000/api/courseWork/' + id)
-  //   .pipe(map((courseWorkData) => {
-  //     return courseWorkData.courseWork.map(courseWork => {
-  //       return {
-  //         id: courseWork._id,
-  //         course: courseWork.course,
-  //         name: courseWork.name,
-  //         type: courseWork.type,
-  //         date: courseWork.date,
-  //         time: courseWork.time,
-  //         creator: courseWork.creator
-  //       };
-  //     });
-  //   }))
-  //   .subscribe((transformedCourseWork) => {
-  //     this.courseWork = transformedCourseWork;
-  //     this.workUpdate.next([...this.courseWork]);
-  //   });
+  //   return this.courseWork.find(c => c.id === id);
   // }
+
+  getCourseWorkById(id: string) {
+    this.http.get<{ courseWork: any }>('http://localhost:3000/api/courseWork/' + id)
+    .pipe(map((courseWorkData: any) => {
+      return courseWorkData.courseWork.map(courseWork => {
+        return {
+          id: courseWork._id,
+          course: courseWork.course,
+          name: courseWork.name,
+          type: courseWork.type,
+          date: courseWork.date,
+          time: courseWork.time,
+          creator: courseWork.creator
+        };
+      });
+    }))
+    .subscribe((transformedCourseWork) => {
+      this.courseWorkById = transformedCourseWork;
+      this.courseWorkUpdate.next(this.courseWorkById);
+    });
+
+    return this.courseWorkById;
+  }
 
   getCourseWorkUpdateListener() {
     return this.workUpdate.asObservable();
