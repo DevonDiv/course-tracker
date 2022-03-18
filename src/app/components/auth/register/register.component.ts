@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -14,11 +13,12 @@ import { AuthService } from '../auth.service';
 export class RegisterComponent implements OnInit {
 
   isLoading = false;
+  error = false;
   hide = true;
   userIsAuthenticated = false;
   authListenerSubs: Subscription;
 
-  constructor(public authService: AuthService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.userIsAuthenticated = this.authService.getIsAuth();
@@ -35,13 +35,12 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.isLoading = true;
+    this.error = false
     this.authService.createUser(form.value.email, form.value.password);
-  }
-
-  openSnackBar() {
-    this.snackBar.open('Email is already taken', 'Close', {
-      duration: 5000,
-    });
+    setTimeout(() => {
+      this.isLoading = false
+      this.error = true
+    }, 2000)
   }
 
 }
