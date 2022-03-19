@@ -3,7 +3,10 @@ import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
 
+import { environment } from "../../environments/environment";
 import { Course } from "./course.model";
+
+const BACKEND_URL = environment.apiURL + "/courses/";
 
 @Injectable({ providedIn: 'root' })
 export class CourseService {
@@ -14,7 +17,7 @@ export class CourseService {
 
   getCourses() {
     // return [...this.courses]
-    this.http.get<{ message: string, courses: any }>('http://localhost:3000/api/courses')
+    this.http.get<{ message: string, courses: any }>(BACKEND_URL)
     .pipe(map((courseData) => {
       return courseData.courses.map(course => {
         return {
@@ -52,7 +55,7 @@ export class CourseService {
         profEmail: profEmail
       };
 
-      this.http.post<{ message: string, courseId: string }>('http://localhost:3000/api/courses', course)
+      this.http.post<{ message: string, courseId: string }>(BACKEND_URL, course)
       .subscribe((responseData) => {
         const id = responseData.courseId;
         course.id = id;
@@ -69,7 +72,7 @@ export class CourseService {
       profEmail: profEmail
     };
 
-    this.http.patch('http://localhost:3000/api/courses/' + id, course)
+    this.http.patch(BACKEND_URL + id, course)
     .subscribe(response => {
       const updatedCourses = [...this.courses];
       const oldCourseIndex = updatedCourses.findIndex(c => c.id === course.id);
@@ -80,7 +83,7 @@ export class CourseService {
   }
 
   deleteCourse(courseId: string) {
-    this.http.delete('http://localhost:3000/api/courses/' + courseId)
+    this.http.delete(BACKEND_URL + courseId)
     .subscribe(() => {
       const updatedCourses = this.courses.filter(course => course.id !== courseId);
       this.courses = updatedCourses;

@@ -3,7 +3,10 @@ import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
 
+import { environment } from "../../environments/environment";
 import { Work } from "./work.model";
+
+const BACKEND_URL = environment.apiURL + "/courseWork/";
 
 
 @Injectable ({ providedIn: 'root' })
@@ -18,7 +21,7 @@ export class WorkService {
   constructor(private http: HttpClient) {}
 
   getCourseWork() {
-    this.http.get<{ message: string, courseWork: any }>('http://localhost:3000/api/courseWork')
+    this.http.get<{ message: string, courseWork: any }>(BACKEND_URL)
     .pipe(map((courseWorkData) => {
       return courseWorkData.courseWork.map(courseWork => {
         return {
@@ -43,7 +46,7 @@ export class WorkService {
   // }
 
   getCourseWorkById(id: string) {
-    this.http.get<{ courseWork: any }>('http://localhost:3000/api/courseWork/' + id)
+    this.http.get<{ courseWork: any }>(BACKEND_URL + id)
     .pipe(map((courseWorkData: any) => {
       return courseWorkData.courseWork.map(courseWork => {
         return {
@@ -79,7 +82,7 @@ export class WorkService {
       time: time
     };
 
-    this.http.post<{ message: string, courseWorkId: string }>('http://localhost:3000/api/courseWork', courseWork)
+    this.http.post<{ message: string, courseWorkId: string }>(BACKEND_URL, courseWork)
     .subscribe((responseData) => {
       const id = responseData.courseWorkId;
       courseWork.id = id;
@@ -98,7 +101,7 @@ export class WorkService {
       time: time
     };
 
-    this.http.put('http://localhost:3000/api/courseWork/' + id, courseWork)
+    this.http.put(BACKEND_URL + id, courseWork)
     .subscribe(response => {
       const updatedCourseWork = [...this.courseWork];
       const oldCourseWorkIndex = updatedCourseWork.findIndex(c => c.id === courseWork.id);
@@ -109,7 +112,7 @@ export class WorkService {
   }
 
   deleteCourseWork(courseWorkId: string) {
-    this.http.delete('http://localhost:3000/api/courseWork/' + courseWorkId)
+    this.http.delete(BACKEND_URL + courseWorkId)
     .subscribe(() => {
       const updatedCourseWork = this.courseWork.filter(courseWork => courseWork.id !== courseWorkId);
       this.courseWork = updatedCourseWork;
