@@ -42,6 +42,8 @@ import { DialogFormComponent } from './components/courseTracker/dialog-form/dial
 import { BackButtonComponent } from './components/courseAdding/back-button/back-button.component';
 import { EditWorkButtonComponent } from './components/courseTracker/edit-work-button/edit-work-button.component';
 import { AuthInterceptor } from './components/auth/register/auth-interceptor';
+import { ErrorInterceptor } from './error-interceptor';
+import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './components/auth/register/auth.guard';
 import { AccountDetailsComponent } from './components/account/account-details/account-details.component';
 import { EditCourseWorkComponent } from './components/courseTracker/edit-course-work/edit-course-work.component';
@@ -78,7 +80,8 @@ const appRoutes: Routes = [
     EditWorkButtonComponent,
     AccountDetailsComponent,
     EditCourseWorkComponent,
-    EditDialogFormComponent
+    EditDialogFormComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +108,11 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatProgressSpinnerModule
   ],
-  providers: [AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }

@@ -47,18 +47,3 @@ a:hover, a:visited, a:active, a:link {
 button {
   width: 40%;
 }
-
-.error {
-  height: 1em;
-  width: 20%;
-  justify-content: center;
-  margin: auto;
-  top: 30%;
-  background-color: rgb(220, 80, 80);
-  color: rgb(210, 220, 215);
-}
-
-mat-card-content {
-  justify-content: center;
-  text-align: center;
-}

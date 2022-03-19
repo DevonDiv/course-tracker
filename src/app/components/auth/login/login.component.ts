@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -10,10 +10,10 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   isLoading = false;
-  error = false;
+  private authStatusSub: Subscription;
   hide = true;
   userIsAuthenticated = false;
   authListenerSubs: Subscription;
@@ -22,6 +22,11 @@ export class LoginComponent implements OnInit {
   constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
+      authStatus => {
+        this.isLoading = false;
+      }
+    );
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
@@ -36,14 +41,11 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    this.error = false;
     this.authService.login(form.value.email, form.value.password);
-    setTimeout(() => {
-      if(!this.userIsAuthenticated) {
-        this.isLoading = false;
-        this.error = true;
-      }
-    }, 2000);
+  }
+
+  ngOnDestroy(): void {
+    this.authListenerSubs.unsubscribe();
   }
 
 }
