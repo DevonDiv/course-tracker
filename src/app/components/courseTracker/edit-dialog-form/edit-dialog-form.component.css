@@ -1,0 +1,8 @@
+.course-work {
+  display: flex;
+  flex-direction: column;
+}
+
+.course-work > * {
+  width: 100%;
+}
