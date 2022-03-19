@@ -17,6 +17,11 @@ router.post("", checkAuth, (req, res, next) => {
       message: 'Course added successfully',
       courseId: createdCourse._id
     });
+  })
+  .catch(error => {
+    res.status(500).json({
+      message: "Adding a Course Failed!"
+    })
   });
 });
 
@@ -26,6 +31,11 @@ router.get("", checkAuth, (req, res, next) => {
     res.status(200).json({
       message: "Courses fetched successfully!",
       courses: documents
+    });
+  })
+  .catch(error => {
+    res.status(500).json({
+      message: "Fetching Courses Failed!"
     });
   });
 });
@@ -43,6 +53,11 @@ router.patch("/:id", checkAuth, (req, res, next) => {
     console.log(result);
     res.status(200).json({ message: "Update successful!" });
   })
+  .catch(error => {
+    res.status(500).json({
+      message: "Update Failed!"
+    });
+  });
 });
 
 router.delete("/:id", checkAuth, (req, res, next) => {
@@ -50,6 +65,11 @@ router.delete("/:id", checkAuth, (req, res, next) => {
   .then(result => {
     console.log(result);
     res.status(200).json({ message: "Course deleted!" });
+  })
+  .catch(error => {
+    res.status(500).json({
+      message: "Deleting Course Failed!"
+    });
   });
 });
 
