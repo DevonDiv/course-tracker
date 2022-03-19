@@ -47,7 +47,7 @@ router.post("/login", (req, res, next) => {
         });
       }
       const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id},
-        'very_long_secret_key_for_json_web_token',
+        process.env.JWT_KEY,
         { expiresIn: '1h' });
       res.status(200).json({
         token: token,
