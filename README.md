@@ -1,6 +1,6 @@
 # Course Tracker
 
-## Link to Live Project - Project Still in Development
+## Link to Live Project - http://course-tracker-mean.s3-website.us-east-2.amazonaws.com/
 
 ## Description
 
