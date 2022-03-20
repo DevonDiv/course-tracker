@@ -1,0 +1,14 @@
+{
+  "name": "course-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.4",
+    "mongoose-unique-validator": "^3.0.0",
+    "tslib": "^2.3.0"
+  }
+}
