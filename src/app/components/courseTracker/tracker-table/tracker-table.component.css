@@ -20,6 +20,21 @@ table {
   width: 80%;
 }
 
+/* media max width of 760 */
+@media screen and (max-width: 760px) {
+  table {
+    width: 35em;
+  }
+
+  tr {
+    font-size: small;
+  }
+
+  td {
+    font-size: small;
+  }
+}
+
 .buttons {
   width: 80%;
   margin-top: 1%;

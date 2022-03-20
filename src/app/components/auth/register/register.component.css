@@ -5,8 +5,12 @@ mat-card-title {
 }
 
 .register {
-  height: 35%;
-  width: 20%;
+  height: 22em;
+  width: 20em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
