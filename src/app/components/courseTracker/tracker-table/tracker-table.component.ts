@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../../../environments/environment';
 import { DialogFormComponent } from '../dialog-form/dialog-form.component';
 import { Course } from '../../../services/course.model';
 import { Work } from '../../../services/work.model';
@@ -15,6 +16,9 @@ import { WorkService } from 'src/app/services/work.service';
 import { Router } from '@angular/router';
 
 let selectedCourseWork;
+
+const BACKEND_URL_COURSES = environment.apiURL + "/courses/";
+const BACKEND_URL_COURSEWORK = environment.apiURL + "/courseWork/";
 
 @Component({
   selector: 'app-tracker-table',
@@ -79,7 +83,7 @@ export class TrackerTableComponent implements OnInit {
 
   getCourseNames() {
     let courseName = [];
-    this.http.get<{ message: string, courses: any }>('http://localhost:3000/api/courses')
+    this.http.get<{ message: string, courses: any }>(BACKEND_URL_COURSES)
     .pipe(map((courseData) => {
       return courseData.courses.map(course => {
         return {
@@ -104,7 +108,7 @@ export class TrackerTableComponent implements OnInit {
 
   getCourseWork() {
     let work = [];
-    this.http.get<{ message: string, courseWork: any }>('http://localhost:3000/api/courseWork')
+    this.http.get<{ message: string, courseWork: any }>(BACKEND_URL_COURSEWORK)
     .pipe(map((courseWorkData) => {
       return courseWorkData.courseWork.map(courseWork => {
         return {
@@ -193,7 +197,7 @@ export class EditDialogFormComponent implements OnInit {
 
   getCourseNames() {
     let courseName = [];
-    this.http.get<{ message: string, courses: any }>('http://localhost:3000/api/courses')
+    this.http.get<{ message: string, courses: any }>(BACKEND_URL_COURSES)
     .pipe(map((courseData) => {
       return courseData.courses.map(course => {
         return {
