@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 
+import { environment } from '../../../../environments/environment';
 import { Course } from '../../../services/course.model';
 import { Work } from 'src/app/services/work.model';
 import { WorkService } from 'src/app/services/work.service';
 
+const BACKEND_URL = environment.apiURL + "/courses/";
 
 @Component({
   selector: 'app-dialog-form',
@@ -28,7 +30,7 @@ export class DialogFormComponent implements OnInit {
 
   getCourseNames() {
     let courseName = [];
-    this.http.get<{ message: string, courses: any }>('http://localhost:3000/api/courses')
+    this.http.get<{ message: string, courses: any }>(BACKEND_URL)
     .pipe(map((courseData) => {
       return courseData.courses.map(course => {
         return {

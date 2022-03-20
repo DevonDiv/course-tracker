@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../../../environments/environment';
 import { Course } from '../../../services/course.model';
+
+const BACKEND_URL = environment.apiURL + "/courses/";
 
 @Component({
   selector: 'app-tracker',
@@ -21,7 +24,7 @@ export class TrackerComponent implements OnInit {
 
   getCourseNames() {
     let courseName = [];
-    this.http.get<{ message: string, courses: any }>('http://localhost:3000/api/courses')
+    this.http.get<{ message: string, courses: any }>(BACKEND_URL)
     .pipe(map((courseData) => {
       return courseData.courses.map(course => {
         return {

@@ -4,10 +4,13 @@ import { NgForm } from '@angular/forms';
 import { map } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
+import { environment } from '../../../../environments/environment';
 import { Course } from '../../../services/course.model';
 import { CourseService } from '../../../services/course.service';
 import { WorkService } from '../../../services/work.service';
 import { Work } from '../../../services/work.model';
+
+const BACKEND_URL = environment.apiURL + "/courses/";
 
 @Component({
   selector: 'app-edit-course-work',
@@ -44,7 +47,7 @@ export class EditCourseWorkComponent implements OnInit {
 
   getCourseNames() {
     let courseName = [];
-    this.http.get<{ message: string, courses: any }>('http://localhost:3000/api/courses')
+    this.http.get<{ message: string, courses: any }>(BACKEND_URL)
     .pipe(map((courseData) => {
       return courseData.courses.map(course => {
         return {
