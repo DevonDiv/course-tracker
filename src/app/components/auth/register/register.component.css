@@ -11,13 +11,8 @@ mat-card-title {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-mat-spinner {
   margin: auto;
+  margin-top: 15%;
 }
 
 regiseter-info {
