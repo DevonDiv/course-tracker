@@ -2,6 +2,8 @@
 
 ## Link to Live Project - http://course-tracker-mean.s3-website.us-east-2.amazonaws.com/
 
+## Test Account Details - email: coursetrackertest@gmail.com - password: Password
+
 ## Description
 
 The motivation behind this project was to learn the MEAN stack and creating an industry ready project. The purpose of the project was to be used by students like myself to track their current semester course work. The project allows the student to create records of their current classes and are able to assign active homework to each class with due dates. I learned about the basics of the Angular Framework and how to use Angular Materials, how to tie in a backend (NodeJS & ExpressJS) with the frontend and make API calls. I also learn how to use JWT Authentication & Authorization, along with how to manage a NoSQL Database in MongoDB.
