@@ -1,8 +1,7 @@
 # Course Tracker
 
-## Link to Live Project - http://course-tracker-mean.s3-website.us-east-2.amazonaws.com/
-
-## Test Account Details - email: coursetrackertest@gmail.com - password: Password
+## Instructions
+Download the project and open two terminals. In the first terminal run the command "npm run start" to start the front end aspect of the project and then "npm run server" in the second terminal to connect to the MongoDB Database.
 
 ## Description
 
